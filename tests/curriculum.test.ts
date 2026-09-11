@@ -4,6 +4,10 @@ import { generateAddition } from '@/engine/generators/addition';
 import { generateSubtraction } from '@/engine/generators/subtraction';
 import { generateComparison } from '@/engine/generators/comparison';
 import { generateOrdering } from '@/engine/generators/ordering';
+import { buildSinonimsSet } from '@/content/catalan/sinonims';
+import { buildAnimalsCatalanSet } from '@/content/catalan/vocabulari';
+import { buildAnimalCategoriesSet } from '@/content/science/animals';
+import { buildBodyPartsSet } from '@/content/science/body';
 
 /**
  * Estos tests protegen contra dos regresiones:
@@ -53,7 +57,7 @@ describe('curriculum mapping', () => {
     const tags = getCurriculumFor('math.addition');
     expect(tags.length).toBeGreaterThan(0);
     for (const t of tags) {
-      expect(t.source).toBe('RD-157-2022');
+      expect(['RD-157-2022', 'Decret-175-2022']).toContain(t.source);
       expect(t.cycle).toBe(1);
     }
   });
@@ -61,5 +65,41 @@ describe('curriculum mapping', () => {
   it('devuelve lista vacía para una sesión no auditada', () => {
     expect(getCurriculumFor('english.colours')).toEqual([]);
     expect(getCurriculumFor('math.multiplication')).toEqual([]);
+  });
+
+  it('catalan.sinonims emite etiqueta del Decret 175/2022', () => {
+    const specs = buildSinonimsSet();
+    expect(specs[0]!.curriculum).toEqual(['DEC.LCA.REF.paraules']);
+  });
+
+  it('catalan.animals emite etiqueta del Decret 175/2022', () => {
+    const specs = buildAnimalsCatalanSet();
+    expect(specs[0]!.curriculum).toEqual(['DEC.LCA.COO.vocab']);
+  });
+
+  it('science.animals emite etiqueta de coneixement del medi', () => {
+    const specs = buildAnimalCategoriesSet();
+    expect(specs[0]!.curriculum).toEqual(['DEC.CMN.CC.vida']);
+  });
+
+  it('science.body emite etiqueta de coneixement del medi (cos humà)', () => {
+    const specs = buildBodyPartsSet();
+    expect(specs[0]!.curriculum).toEqual(['DEC.CMN.CC.cos']);
+  });
+
+  it('generadores de mates emiten ambas fuentes (RD estatal + Decret catalán)', () => {
+    const specs = [
+      generateAddition({ difficulty: 1, seed: 1 }),
+      generateSubtraction({ difficulty: 1, seed: 2 }),
+      generateComparison({ difficulty: 1, seed: 3 }),
+      generateOrdering({ difficulty: 1, seed: 4 })
+    ];
+    for (const spec of specs) {
+      const codes = spec.curriculum ?? [];
+      const hasRD = codes.some((c) => c.startsWith('RD.'));
+      const hasDecret = codes.some((c) => c.startsWith('DEC.'));
+      expect(hasRD, `${spec.id} debería citar el RD estatal`).toBe(true);
+      expect(hasDecret, `${spec.id} debería citar el Decret catalán`).toBe(true);
+    }
   });
 });

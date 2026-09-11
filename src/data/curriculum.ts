@@ -89,16 +89,55 @@ export const CURRICULUM_TAGS: Record<string, CurriculumTag> = {
     source: 'RD-157-2022',
     cycle: 1,
     text: 'Reflexión sobre la lengua: procedimientos básicos de adquisición de vocabulario. Mecanismos léxicos básicos para la formación de palabras.'
+  },
+
+  // ─────────── Decret 175/2022 (Cataluña) — Cicle inicial (1r i 2n) ───────────
+
+  'DEC.MAT.SNUM.SO': {
+    code: 'DEC.MAT.SNUM.SO',
+    source: 'Decret-175-2022',
+    cycle: 1,
+    text: 'Sentit numèric — Sentit de les operacions: pràctica de la suma i la resta de nombres naturals amb flexibilitat i sentit en situacions contextualitzades. Càlcul mental amb nombres naturals fins al 199.'
+  },
+  'DEC.MAT.SNUM.REL': {
+    code: 'DEC.MAT.SNUM.REL',
+    source: 'Decret-175-2022',
+    cycle: 1,
+    text: 'Sentit numèric — Relacions: comparació i ordenació dels nombres naturals en contextos de la vida quotidiana. Identificació de les relacions entre la suma i la resta.'
+  },
+  'DEC.LCA.REF.paraules': {
+    code: 'DEC.LCA.REF.paraules',
+    source: 'Decret-175-2022',
+    cycle: 1,
+    text: 'Reflexió sobre la llengua: identificació de diferents relacions formals, semàntiques i sintàctiques entre les paraules en la lectura i en les diferents produccions escrites.'
+  },
+  'DEC.LCA.COO.vocab': {
+    code: 'DEC.LCA.COO.vocab',
+    source: 'Decret-175-2022',
+    cycle: 1,
+    text: 'Comunicació oral — Identificació d\'elements bàsics de contingut (tema, fórmules fixes, lèxic) i forma en les produccions orals de la vida quotidiana.'
+  },
+  'DEC.CMN.CC.vida': {
+    code: 'DEC.CMN.CC.vida',
+    source: 'Decret-175-2022',
+    cycle: 1,
+    text: 'Cultura científica — La vida al nostre planeta: anàlisi de les adaptacions dels éssers vius a l\'hàbitat per tal de classificar-los segons les característiques observables.'
+  },
+  'DEC.CMN.CC.cos': {
+    code: 'DEC.CMN.CC.cos',
+    source: 'Decret-175-2022',
+    cycle: 1,
+    text: 'Cultura científica — La vida al nostre planeta: comprensió de les funcions vitals dels éssers vius i identificació d\'hàbits saludables relacionats amb el benestar físic de l\'ésser humà.'
   }
 };
 
 /** Mapeo de sessionId de la app a lista de códigos curriculares. */
 export const SESSION_CURRICULUM: Record<string, string[]> = {
-  // Matemáticas — primer ciclo
-  'math.addition': ['RD.MAT.A.3', 'RD.MAT.A.4'],
-  'math.subtraction': ['RD.MAT.A.3', 'RD.MAT.A.4'],
-  'math.comparison': ['RD.MAT.A.4'],
-  'math.ordering': ['RD.MAT.A.4'],
+  // Matemáticas — primer ciclo (RD + Decret catalán)
+  'math.addition': ['RD.MAT.A.3', 'RD.MAT.A.4', 'DEC.MAT.SNUM.SO'],
+  'math.subtraction': ['RD.MAT.A.3', 'RD.MAT.A.4', 'DEC.MAT.SNUM.SO'],
+  'math.comparison': ['RD.MAT.A.4', 'DEC.MAT.SNUM.REL'],
+  'math.ordering': ['RD.MAT.A.4', 'DEC.MAT.SNUM.REL'],
   // Multiplicación es un avance sobre saberes de segundo ciclo — no se etiqueta como saber básico de primer ciclo.
   'math.multiplication': [],
 
@@ -106,8 +145,15 @@ export const SESSION_CURRICULUM: Record<string, string[]> = {
   'spanish.synonyms': ['RD.LCL.D.vocab'],
   'spanish.antonyms': ['RD.LCL.D.vocab'],
 
-  // El resto (english, catalan, science, games) pendiente de auditoría.
-  // Se marcan como sin etiqueta oficial en lugar de mentir con una.
+  // Català — cicle inicial (Decret 175/2022)
+  'catalan.sinonims': ['DEC.LCA.REF.paraules'],
+  'catalan.animals': ['DEC.LCA.COO.vocab'],
+
+  // Coneixement del Medi — cicle inicial
+  'science.animals': ['DEC.CMN.CC.vida'],
+  'science.body': ['DEC.CMN.CC.cos'],
+
+  // Inglés y juegos siguen sin auditar en esta iteración.
 };
 
 /** Devuelve las etiquetas curriculares completas para una sesión. */

@@ -25,6 +25,7 @@ export function buildSinonimsSet(): MultipleChoiceSpec[] {
       subjectId: 'catalan',
       topicId: 'catalan.sinonims',
       difficulty: 1,
+      curriculum: ['DEC.LCA.REF.paraules'],
       question: {
         es: `¿Qué palabra en catalán significa lo mismo que "${p.word}"?`,
         ca: `Quina paraula vol dir el mateix que "${p.word}"?`

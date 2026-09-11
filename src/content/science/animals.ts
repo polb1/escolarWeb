@@ -54,6 +54,7 @@ export function buildAnimalCategoriesSet(): ImageSelectionSpec[] {
       subjectId: 'science',
       topicId: 'science.animals',
       difficulty: 1,
+      curriculum: ['DEC.CMN.CC.vida'],
       question: {
         es: `Elige ${CATEGORIES[cat].es}`,
         ca: `Tria ${CATEGORIES[cat].ca}`

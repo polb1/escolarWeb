@@ -33,6 +33,7 @@ export function buildBodyPartsSet(): MultipleChoiceSpec[] {
       subjectId: 'science',
       topicId: 'science.body',
       difficulty: 1,
+      curriculum: ['DEC.CMN.CC.cos'],
       question: {
         es: '¿Qué parte del cuerpo es?',
         ca: 'Quina part del cos és?'

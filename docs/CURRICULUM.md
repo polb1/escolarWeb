@@ -11,8 +11,9 @@ Este documento describe la correspondencia entre el contenido de la app y los **
 
 ### Cataluña
 - **Decret 175/2022**, de 27 de setembre, d'ordenació dels ensenyaments de l'educació bàsica.
+- Publicat al **DOGC núm. 8762, de 29.9.2022**.
 - La estructura catalana usa **Cicle Inicial** (1r + 2n), **Cicle Mitjà** (3r + 4t) y **Cicle Superior** (5è + 6è).
-- **Estado**: mapeo pendiente. Ver sección "Trabajo pendiente" abajo.
+- **Estado**: mapeo completado para Matemàtiques, Llengua Catalana i Coneixement del Medi (cicle inicial).
 
 ## Mapeo — Matemáticas (primer ciclo)
 
@@ -54,16 +55,41 @@ Los saberes básicos del área se organizan en cuatro bloques (A. Las lenguas y 
 | `spanish.synonyms` | RD.LCL.D.vocab | Bloque D — *"Procedimientos básicos de adquisición de vocabulario. Mecanismos léxicos básicos para la formación de palabras"* |
 | `spanish.antonyms` | RD.LCL.D.vocab | Bloque D — mismo saber |
 
+## Mapeo — Decret 175/2022 (Cataluña, cicle inicial)
+
+Basado en Annex 2 del Decret 175/2022 (DOGC núm. 8762, pp. 138-142 del PDF descargado).
+
+### Matemàtiques (cicle inicial, 1r i 2n)
+
+| Bloc | Código | Contenido oficial (abreviado) |
+|---|---|---|
+| Sentit numèric | DEC.MAT.SNUM.SO | Sentit de les operacions: suma i resta amb flexibilitat. Càlcul mental fins 199 |
+| Sentit numèric | DEC.MAT.SNUM.REL | Relacions: comparació i ordenació. Relacions suma↔resta |
+
+**Diferencia importante detectada** — el Decret catalán acota el rango de números del cicle inicial a **199**, mientras el RD estatal usa **999**. La app ofrece hasta el nivel 5 con rangos superiores; se documenta esta divergencia y en Cataluña se recomienda mantenerse en niveles 1-2 (que no exceden 199). Un futuro toggle "modo currículum catalán estricto" podría limitar la selección de dificultad automáticamente.
+
+Otras diferencias detectadas:
+- El Decret catalán introduce **=, ≠, <, >** en cicle inicial. El RD estatal solo introduce **=, ≠**.
+- Billetes de euro en cicle inicial: **1, 2, 5, 10, 20, 50** (RD estatal añade 100).
+
+### Llengua Catalana i Literatura (cicle inicial)
+
+| Bloc | Código | Contenido oficial (abreviado) |
+|---|---|---|
+| Reflexió sobre la llengua | DEC.LCA.REF.paraules | Relacions formals, semàntiques i sintàctiques entre paraules |
+| Comunicació oral | DEC.LCA.COO.vocab | Contingut: tema, fórmules fixes, lèxic |
+
+### Coneixement del Medi Natural, Social i Cultural (cicle inicial)
+
+| Bloc | Código | Contenido oficial (abreviado) |
+|---|---|---|
+| Cultura científica > La vida al nostre planeta | DEC.CMN.CC.vida | Anàlisi de les adaptacions dels éssers vius a l'hàbitat i classificació |
+| Cultura científica > La vida al nostre planeta | DEC.CMN.CC.cos | Funcions vitals de l'ésser humà i hàbits saludables |
+
 ## Trabajo pendiente
 
-Los siguientes contenidos de la app **no** están aún etiquetados contra normativa oficial:
-
 - **Inglés** (Lengua Extranjera del RD 157/2022 — vocabulario básico, saludos).
-- **Català** (Decret 175/2022 — Cicle Inicial, àrea de Llengua Catalana i Literatura).
-- **Coneixement del Medi** (Decret 175/2022 — àmbit de Coneixement del Medi Natural / Social).
 - **Juegos** (memoria) — al ser transversales, se documentarán como refuerzo, no como saberes autónomos.
-
-Estos contenidos siguen etiquetados internamente como *borrador pedagógico* hasta que se realice el mapeo formal con las fuentes correspondientes.
 
 ## Cómo se muestra al usuario
 

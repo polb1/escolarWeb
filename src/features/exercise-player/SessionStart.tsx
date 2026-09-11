@@ -19,23 +19,42 @@ interface DifficultyChoice {
  * Solo se ofrecen 3 niveles al niño (1, 2, 3). Los niveles 4-5 se reservan
  * para la adaptatividad interna cuando el niño demuestra dominio.
  */
+const SOURCE_LABELS: Record<string, string> = {
+  'RD-157-2022': 'Real Decreto 157/2022, ANEXO II — Educación Primaria (España)',
+  'Decret-175-2022': 'Decret 175/2022, Annex 2 — Educació Primària (Catalunya)'
+};
+
 function CurriculumFootnote({ sessionId }: { sessionId: string }) {
   const tags = getCurriculumFor(sessionId);
   if (tags.length === 0) return null;
+
+  const grouped = tags.reduce<Record<string, typeof tags>>((acc, tag) => {
+    (acc[tag.source] ??= []).push(tag);
+    return acc;
+  }, {});
+
   return (
     <details className="mt-6 rounded-2xl bg-black/5 p-3 text-sm text-inkSoft">
       <summary className="cursor-pointer font-bold">📘 Currículo oficial</summary>
-      <ul className="mt-2 space-y-2">
-        {tags.map((tag) => (
-          <li key={tag.code}>
-            <span className="font-mono text-xs bg-white rounded px-1 py-0.5 mr-2">{tag.code}</span>
-            {tag.text}
-          </li>
+      <div className="mt-3 space-y-4">
+        {Object.entries(grouped).map(([source, srcTags]) => (
+          <div key={source}>
+            <p className="text-xs font-bold uppercase tracking-wide mb-1">
+              {SOURCE_LABELS[source] ?? source}
+            </p>
+            <ul className="space-y-2">
+              {srcTags.map((tag) => (
+                <li key={tag.code}>
+                  <span className="font-mono text-xs bg-white rounded px-1 py-0.5 mr-2">
+                    {tag.code}
+                  </span>
+                  {tag.text}
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
-      <p className="mt-2 text-xs opacity-75">
-        Referencia: Real Decreto 157/2022, ANEXO II, Educación Primaria, Primer Ciclo.
-      </p>
+      </div>
     </details>
   );
 }

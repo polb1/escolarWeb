@@ -38,6 +38,7 @@ export function buildAnimalsCatalanSet(): MultipleChoiceSpec[] {
       subjectId: 'catalan',
       topicId: 'catalan.animals',
       difficulty: 1,
+      curriculum: ['DEC.LCA.COO.vocab'],
       question: {
         es: '¿Cómo se dice este animal en catalán?',
         ca: 'Com es diu aquest animal?'
