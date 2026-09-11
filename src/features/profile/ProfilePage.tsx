@@ -46,20 +46,20 @@ export function ProfilePage() {
         ← {t('actions.back')}
       </Link>
 
-      <div className="mt-6 rounded-3xl bg-surfaceElevated shadow-card p-6 border border-black/5 flex items-center gap-5">
-        <div className="text-6xl" aria-hidden="true">
+      <div className="mt-6 rounded-2xl md:rounded-3xl bg-surfaceElevated shadow-card p-4 md:p-6 border border-black/5 flex items-center gap-3 md:gap-5">
+        <div className="text-4xl md:text-6xl flex-shrink-0" aria-hidden="true">
           {profile.avatar}
         </div>
-        <div className="flex-1">
-          <div className="text-inkSoft text-sm font-bold uppercase tracking-wide">
+        <div className="flex-1 min-w-0">
+          <div className="text-inkSoft text-xs md:text-sm font-bold uppercase tracking-wide">
             {t('profilePage.hi')}
           </div>
-          <div className="font-black text-2xl">{profile.nickname}</div>
+          <div className="font-black text-xl md:text-2xl truncate">{profile.nickname}</div>
         </div>
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="rounded-full p-3 bg-brand text-white"
+          className="rounded-full p-3 bg-brand text-white flex-shrink-0"
           aria-label={t('profilePage.edit')}
         >
           <Edit3 size={20} aria-hidden="true" />

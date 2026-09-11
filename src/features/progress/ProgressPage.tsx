@@ -43,11 +43,13 @@ export function ProgressPage() {
         ← {t('actions.back')}
       </Link>
 
-      <header className="mt-4 flex items-center gap-4">
-        <Mascot size={72} mood="cheer" />
-        <div>
-          <h1 className="font-black text-3xl">{t('progressPage.title')}</h1>
-          <p className="text-inkSoft">{t('progressPage.subtitle')}</p>
+      <header className="mt-4 flex items-center gap-3 md:gap-4">
+        <div className="flex-shrink-0 w-14 h-14 md:w-[72px] md:h-[72px]">
+          <Mascot size="100%" mood="cheer" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <h1 className="font-black text-2xl md:text-3xl leading-tight">{t('progressPage.title')}</h1>
+          <p className="text-inkSoft text-sm md:text-base">{t('progressPage.subtitle')}</p>
         </div>
       </header>
 
@@ -116,12 +118,12 @@ export function ProgressPage() {
 
 function StatCard({ icon, value, label }: { icon: string; value: number; label: string }) {
   return (
-    <div className="rounded-3xl bg-surfaceElevated shadow-card p-4 text-center border border-black/5">
-      <div className="text-3xl" aria-hidden="true">
+    <div className="rounded-2xl md:rounded-3xl bg-surfaceElevated shadow-card p-3 md:p-4 text-center border border-black/5">
+      <div className="text-2xl md:text-3xl" aria-hidden="true">
         {icon}
       </div>
-      <div className="font-black text-2xl tabular-nums mt-1">{value}</div>
-      <div className="text-xs font-bold text-inkSoft uppercase tracking-wide mt-1">{label}</div>
+      <div className="font-black text-xl md:text-2xl tabular-nums mt-1">{value}</div>
+      <div className="text-[10px] md:text-xs font-bold text-inkSoft uppercase tracking-wide mt-1 truncate">{label}</div>
     </div>
   );
 }

@@ -91,17 +91,19 @@ export function SessionStart() {
         ← {t('actions.back')}
       </button>
 
-      <div className="mt-6 flex items-center gap-4">
-        <Mascot size={72} mood="happy" />
-        <div>
-          <h1 className="font-black text-2xl md:text-3xl">{t(session.titleKey)}</h1>
-          <p className="text-inkSoft mt-1">{t('difficulty.prompt')}</p>
+      <div className="mt-6 flex items-center gap-3 md:gap-4">
+        <div className="flex-shrink-0 w-14 h-14 md:w-[72px] md:h-[72px]">
+          <Mascot size="100%" mood="happy" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <h1 className="font-black text-xl md:text-3xl leading-tight break-words">{t(session.titleKey)}</h1>
+          <p className="text-inkSoft text-sm md:text-base mt-1">{t('difficulty.prompt')}</p>
         </div>
       </div>
 
       <CurriculumFootnote sessionId={sessionId} />
 
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
         {CHOICES.map((c) => (
           <motion.button
             key={c.d}
@@ -109,16 +111,16 @@ export function SessionStart() {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => navigate(`/play/${sessionId}?d=${c.d}`)}
-            className="rounded-3xl bg-surfaceElevated shadow-card p-6 text-left border-4 focus-visible:outline-none"
+            className="rounded-2xl md:rounded-3xl bg-surfaceElevated shadow-card p-4 md:p-6 text-left border-4 focus-visible:outline-none"
             style={{ borderColor: c.color }}
           >
-            <div className="text-5xl mb-3" aria-hidden="true">
+            <div className="text-4xl md:text-5xl mb-2 md:mb-3" aria-hidden="true">
               {c.emoji}
             </div>
-            <div className="font-black text-xl" style={{ color: c.color }}>
+            <div className="font-black text-lg md:text-xl" style={{ color: c.color }}>
               {t(c.labelKey)}
             </div>
-            <div className="text-inkSoft mt-1 text-sm">{t(c.descKey)}</div>
+            <div className="text-inkSoft mt-1 text-xs md:text-sm">{t(c.descKey)}</div>
           </motion.button>
         ))}
       </div>

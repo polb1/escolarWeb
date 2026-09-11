@@ -26,19 +26,37 @@
   --color-hint: #eab308;
   --color-retry: #ef4444;
 
-  /* Tipografía base grande (público 7-8 años) */
-  --font-size-base: 18px;
+  /* Tipografía base grande (público 7-8 años).
+     Escala reducida en móviles para que titulares largos como
+     "Matemáticas" y "¿Qué animal es?" quepan sin romperse. */
+  --font-size-base: 16px;
 
   /* Tamaños táctiles: WCAG target mínimo 44x44 */
   --tap-target: 48px;
 }
 
+/* En pantallas amplias subimos la base a 18px — hay más espacio para
+   respirar y a los peques les cuesta menos leer letra grande. */
+@media (min-width: 768px) {
+  :root {
+    --font-size-base: 18px;
+  }
+}
+
 /* Preferencia de tamaño de letra grande (accesibilidad) */
 :root[data-font-scale="large"] {
-  --font-size-base: 22px;
+  --font-size-base: 20px;
 }
 :root[data-font-scale="xlarge"] {
-  --font-size-base: 26px;
+  --font-size-base: 24px;
+}
+@media (min-width: 768px) {
+  :root[data-font-scale="large"] {
+    --font-size-base: 22px;
+  }
+  :root[data-font-scale="xlarge"] {
+    --font-size-base: 26px;
+  }
 }
 
 /* Modo oscuro futuro (placeholder) */

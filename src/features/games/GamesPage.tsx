@@ -39,11 +39,13 @@ export function GamesPage() {
   const { t } = useTranslation();
   return (
     <div className="mx-auto max-w-3xl px-4 pt-6 pb-24">
-      <div className="flex items-center gap-4">
-        <Mascot size={72} mood="cheer" />
-        <div>
-          <h1 className="font-black text-3xl">{t('gamesPage.title')}</h1>
-          <p className="text-inkSoft">{t('gamesPage.subtitle')}</p>
+      <div className="flex items-center gap-3 md:gap-4">
+        <div className="flex-shrink-0 w-14 h-14 md:w-[72px] md:h-[72px]">
+          <Mascot size="100%" mood="cheer" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <h1 className="font-black text-2xl md:text-3xl leading-tight">{t('gamesPage.title')}</h1>
+          <p className="text-inkSoft text-sm md:text-base">{t('gamesPage.subtitle')}</p>
         </div>
       </div>
 

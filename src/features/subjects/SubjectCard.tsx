@@ -15,13 +15,13 @@ export function SubjectCard({ subject }: Props) {
     <>
       <div
         aria-hidden="true"
-        className="text-5xl md:text-6xl mb-3"
+        className="text-4xl md:text-6xl mb-2 md:mb-3"
         style={{ filter: disabled ? 'grayscale(0.4)' : 'none' }}
       >
         {subject.icon}
       </div>
-      <div className="font-black text-xl md:text-2xl text-ink">{t(subject.nameKey)}</div>
-      <div className="text-inkSoft text-sm md:text-base mt-1">{t(subject.taglineKey)}</div>
+      <div className="font-black text-lg md:text-2xl text-ink leading-tight">{t(subject.nameKey)}</div>
+      <div className="text-inkSoft text-xs md:text-base mt-1">{t(subject.taglineKey)}</div>
       {disabled && (
         <div
           className="absolute top-3 right-3 text-xs font-bold uppercase tracking-wide px-2 py-1 rounded-full bg-white/80 text-ink"
@@ -34,10 +34,10 @@ export function SubjectCard({ subject }: Props) {
   );
 
   const className =
-    'relative block w-full text-left rounded-3xl p-6 shadow-card transition-transform bg-surfaceElevated border-4 focus-visible:outline-none';
+    'relative block w-full text-left rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card transition-transform bg-surfaceElevated border-4 focus-visible:outline-none';
   const style = {
     borderColor: subject.colorVar,
-    minHeight: 180
+    minHeight: 140
   } as const;
 
   if (disabled) {

@@ -25,12 +25,14 @@ export function OnboardingWizard() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-lg rounded-3xl bg-surfaceElevated shadow-card p-8 border border-black/5">
-        <div className="flex items-center gap-4 mb-6">
-          <Mascot size={72} mood={step === 2 ? 'cheer' : 'happy'} />
-          <div>
-            <h1 className="font-black text-2xl">{t('profile.welcomeTitle')}</h1>
-            <p className="text-inkSoft text-sm mt-1">{t('profile.welcomeSubtitle')}</p>
+      <div className="w-full max-w-lg rounded-3xl bg-surfaceElevated shadow-card p-5 md:p-8 border border-black/5">
+        <div className="flex items-center gap-3 md:gap-4 mb-6">
+          <div className="flex-shrink-0 w-14 h-14 md:w-[72px] md:h-[72px]">
+            <Mascot size="100%" mood={step === 2 ? 'cheer' : 'happy'} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h1 className="font-black text-xl md:text-2xl leading-tight">{t('profile.welcomeTitle')}</h1>
+            <p className="text-inkSoft text-xs md:text-sm mt-1">{t('profile.welcomeSubtitle')}</p>
           </div>
         </div>
 

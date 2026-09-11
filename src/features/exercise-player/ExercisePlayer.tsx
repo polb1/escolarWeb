@@ -168,7 +168,7 @@ export function ExercisePlayer() {
   const Renderer = getRenderer(current.type);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <header className="flex items-center justify-between px-4 pt-4">
         <button
           type="button"

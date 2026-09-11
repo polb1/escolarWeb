@@ -72,17 +72,17 @@ export function SubjectView() {
       <Link to="/" className="text-inkSoft font-bold">
         ← {t('actions.back')}
       </Link>
-      <div className="mt-4 flex items-center gap-4">
+      <div className="mt-4 flex items-center gap-3 md:gap-4">
         <div
           aria-hidden="true"
-          className="text-6xl w-24 h-24 rounded-3xl grid place-items-center"
+          className="text-4xl md:text-6xl w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl grid place-items-center flex-shrink-0"
           style={{ background: `${subject.colorVar}22` }}
         >
           {subject.icon}
         </div>
-        <div>
-          <h1 className="font-black text-3xl">{t(subject.nameKey)}</h1>
-          <p className="text-inkSoft">{t(subject.taglineKey)}</p>
+        <div className="min-w-0 flex-1">
+          <h1 className="font-black text-2xl md:text-3xl leading-tight break-words">{t(subject.nameKey)}</h1>
+          <p className="text-inkSoft text-sm md:text-base">{t(subject.taglineKey)}</p>
         </div>
       </div>
 

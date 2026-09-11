@@ -4,7 +4,8 @@ type Mood = 'happy' | 'thinking' | 'cheer';
 
 interface Props {
   mood?: Mood;
-  size?: number;
+  /** Ancho/alto en px. Se puede omitir si el contenedor padre define el tamaño. */
+  size?: number | '100%';
   ariaLabel?: string;
 }
 
@@ -21,8 +22,9 @@ export function Mascot({ mood = 'happy', size = 96, ariaLabel = 'Lumi' }: Props)
     <motion.svg
       role="img"
       aria-label={ariaLabel}
-      width={size}
-      height={size}
+      width={size === '100%' ? '100%' : size}
+      height={size === '100%' ? '100%' : size}
+      style={{ maxWidth: '100%', maxHeight: '100%' }}
       viewBox="-60 -60 120 120"
       initial={{ scale: 0.95 }}
       animate={{ scale: [0.98, 1.02, 0.98] }}
