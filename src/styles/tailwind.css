@@ -1,0 +1,28 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-size: var(--font-size-base);
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Nunito', system-ui, sans-serif;
+  }
+  button {
+    min-height: var(--tap-target);
+  }
+  /* Foco visible siempre — no lo escondemos jamás por estética */
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}

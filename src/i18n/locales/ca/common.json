@@ -1,0 +1,93 @@
+{
+  "app": {
+    "name": "EstudiaWeb",
+    "tagline": "Aprendre és una aventura"
+  },
+  "greeting": {
+    "morning": "Bon dia, {{name}}!",
+    "afternoon": "Bona tarda, {{name}}!",
+    "evening": "Bona nit, {{name}}!",
+    "anonymous": "explorador"
+  },
+  "home": {
+    "prompt": "Què vols aprendre avui?",
+    "todayMission": "Missió d'avui",
+    "todayMissionEmpty": "Tria una assignatura per començar",
+    "seeProgress": "El meu progrés",
+    "seeAchievements": "Els meus assoliments",
+    "playGames": "Jocs"
+  },
+  "subjects": {
+    "math": { "name": "Matemàtiques", "tagline": "Nombres, sumes i reptes" },
+    "spanish": { "name": "Castellà", "tagline": "Llegir, escriure i jugar" },
+    "catalan": { "name": "Català", "tagline": "Llegir i escriure en català" },
+    "science": { "name": "Medi", "tagline": "El cos, els animals i més" },
+    "english": { "name": "Anglès", "tagline": "Paraules i frases bàsiques" }
+  },
+  "status": {
+    "comingSoon": "Molt aviat"
+  },
+  "profile": {
+    "welcomeTitle": "Benvingut!",
+    "welcomeSubtitle": "Anem a crear el teu perfil en 3 passos.",
+    "askName": "Com et dius?",
+    "namePlaceholder": "El teu nom o sobrenom",
+    "askAvatar": "Tria el teu avatar",
+    "askLanguage": "En quin idioma vols jugar?",
+    "start": "Comencem!",
+    "next": "Següent",
+    "back": "Enrere"
+  },
+  "nav": {
+    "home": "Inici",
+    "games": "Jocs",
+    "progress": "Progrés",
+    "profile": "Perfil"
+  },
+  "settings": {
+    "title": "Ajustos",
+    "sound": "So",
+    "fontSize": "Mida de la lletra",
+    "fontSizeNormal": "Normal",
+    "fontSizeLarge": "Gran",
+    "fontSizeXLarge": "Molt gran",
+    "language": "Idioma"
+  },
+  "actions": {
+    "back": "Enrere",
+    "continue": "Continuar",
+    "close": "Tancar"
+  },
+  "sessions": {
+    "exercises_one": "{{count}} exercici",
+    "exercises_other": "{{count}} exercicis",
+    "math": {
+      "addition": "Sumes",
+      "subtraction": "Restes"
+    },
+    "english": {
+      "colours": "Colors",
+      "animals": "Animals",
+      "numbers": "Nombres"
+    }
+  },
+  "difficulty": {
+    "prompt": "Quin nivell vols provar?",
+    "easy": "Fàcil",
+    "easyDesc": "Comencem suau, amb nombres petits",
+    "medium": "Normal",
+    "mediumDesc": "Un pas més, sense portar-ne",
+    "hard": "Difícil",
+    "hardDesc": "Amb portada, per als valents"
+  },
+  "player": {
+    "hint": "Pista",
+    "audio": "Escoltar",
+    "done": "Sessió acabada!"
+  },
+  "feedback": {
+    "correct": "Molt bé!",
+    "retry": "Gairebé! Anem a provar-ho una altra vegada",
+    "close": "Ho tens molt a prop! Prova de nou"
+  }
+}

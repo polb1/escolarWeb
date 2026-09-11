@@ -1,0 +1,93 @@
+{
+  "app": {
+    "name": "EstudiaWeb",
+    "tagline": "Aprender es una aventura"
+  },
+  "greeting": {
+    "morning": "¡Buenos días, {{name}}!",
+    "afternoon": "¡Buenas tardes, {{name}}!",
+    "evening": "¡Buenas noches, {{name}}!",
+    "anonymous": "explorador"
+  },
+  "home": {
+    "prompt": "¿Qué quieres aprender hoy?",
+    "todayMission": "Misión de hoy",
+    "todayMissionEmpty": "Elige una asignatura para empezar",
+    "seeProgress": "Mi progreso",
+    "seeAchievements": "Mis logros",
+    "playGames": "Juegos"
+  },
+  "subjects": {
+    "math": { "name": "Matemáticas", "tagline": "Números, sumas y retos" },
+    "spanish": { "name": "Castellano", "tagline": "Leer, escribir y jugar" },
+    "catalan": { "name": "Català", "tagline": "Llegir i escriure en català" },
+    "science": { "name": "Medio", "tagline": "El cuerpo, los animales y más" },
+    "english": { "name": "Inglés", "tagline": "Palabras y frases básicas" }
+  },
+  "status": {
+    "comingSoon": "Muy pronto"
+  },
+  "profile": {
+    "welcomeTitle": "¡Bienvenido!",
+    "welcomeSubtitle": "Vamos a crear tu perfil en 3 pasos.",
+    "askName": "¿Cómo te llamas?",
+    "namePlaceholder": "Tu nombre o apodo",
+    "askAvatar": "Elige tu avatar",
+    "askLanguage": "¿En qué idioma quieres jugar?",
+    "start": "¡Empezar!",
+    "next": "Siguiente",
+    "back": "Atrás"
+  },
+  "nav": {
+    "home": "Inicio",
+    "games": "Juegos",
+    "progress": "Progreso",
+    "profile": "Perfil"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "sound": "Sonido",
+    "fontSize": "Tamaño de letra",
+    "fontSizeNormal": "Normal",
+    "fontSizeLarge": "Grande",
+    "fontSizeXLarge": "Muy grande",
+    "language": "Idioma"
+  },
+  "actions": {
+    "back": "Atrás",
+    "continue": "Continuar",
+    "close": "Cerrar"
+  },
+  "sessions": {
+    "exercises_one": "{{count}} ejercicio",
+    "exercises_other": "{{count}} ejercicios",
+    "math": {
+      "addition": "Sumas",
+      "subtraction": "Restas"
+    },
+    "english": {
+      "colours": "Colores",
+      "animals": "Animales",
+      "numbers": "Números"
+    }
+  },
+  "difficulty": {
+    "prompt": "¿Qué nivel quieres probar?",
+    "easy": "Fácil",
+    "easyDesc": "Empezamos suave, con números pequeños",
+    "medium": "Normal",
+    "mediumDesc": "Un pasito más, sin llevadas",
+    "hard": "Difícil",
+    "hardDesc": "Con llevadas, para valientes"
+  },
+  "player": {
+    "hint": "Pista",
+    "audio": "Escuchar",
+    "done": "¡Sesión completada!"
+  },
+  "feedback": {
+    "correct": "¡Muy bien!",
+    "retry": "¡Casi! Vamos a intentarlo otra vez",
+    "close": "¡Estás muy cerca! Prueba de nuevo"
+  }
+}

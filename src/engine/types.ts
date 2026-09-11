@@ -1,0 +1,70 @@
+import type { SubjectId } from '@/data/subjects';
+
+export type Difficulty = 1 | 2 | 3 | 4 | 5;
+
+export type ExerciseType =
+  | 'multiple_choice'
+  | 'math_operation'
+  | 'matching';
+
+export interface Localized {
+  es: string;
+  ca: string;
+  en?: string;
+}
+
+export interface ExerciseBase {
+  id: string;
+  type: ExerciseType;
+  subjectId: SubjectId;
+  topicId: string;
+  difficulty: Difficulty;
+  /** Etiquetas del currículo (pendiente auditar). */
+  curriculum?: string[];
+  hint?: Localized;
+  explanation?: Localized;
+}
+
+export interface MultipleChoiceSpec extends ExerciseBase {
+  type: 'multiple_choice';
+  question: Localized;
+  options: Localized[];
+  correctIndex: number;
+}
+
+export interface MathOperationSpec extends ExerciseBase {
+  type: 'math_operation';
+  /** Renderizado visual del planteamiento (`"34 + 28"`). */
+  render: string;
+  /** Respuesta numérica esperada. Siempre calculada, nunca inventada. */
+  answer: number;
+  /** Vista previa opcional en dos líneas: `["  34", "+ 28"]`. */
+  columns?: [string, string];
+}
+
+export interface MatchingSpec extends ExerciseBase {
+  type: 'matching';
+  prompt: Localized;
+  /** Pares que hay que unir. El orden en pantalla se aleatoriza. */
+  pairs: { left: Localized; right: Localized }[];
+}
+
+export type ExerciseSpec = MultipleChoiceSpec | MathOperationSpec | MatchingSpec;
+
+/** Resultado de UN intento del jugador dentro de un ejercicio. */
+export interface AttemptResult {
+  correct: boolean;
+  /** Mensaje amable a mostrar en el panel de feedback. */
+  feedbackKey: 'feedback.correct' | 'feedback.retry' | 'feedback.close';
+  /** Explicación adicional si estamos en el 2º+ intento fallado. */
+  showExplanation?: boolean;
+}
+
+export interface SessionSummary {
+  total: number;
+  correct: number;
+  firstTryCorrect: number;
+  hintsUsed: number;
+  totalMs: number;
+  xpEarned: number;
+}

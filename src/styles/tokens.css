@@ -1,0 +1,58 @@
+/*
+ * Design tokens.
+ * Los colores por asignatura se resuelven vía CSS variables para permitir
+ * futuros temas (alto contraste, modo oscuro) sin tocar componentes.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Superficie */
+  --color-surface: #fafafa;
+  --color-surface-elevated: #ffffff;
+  --color-ink: #1f2937;
+  --color-ink-soft: #6b7280;
+  --color-brand: #3b82f6;
+
+  /* Asignaturas */
+  --color-subject-math: #3b82f6;      /* azul */
+  --color-subject-spanish: #f97316;   /* naranja */
+  --color-subject-catalan: #a855f7;   /* morado */
+  --color-subject-science: #22c55e;   /* verde */
+  --color-subject-english: #14b8a6;   /* teal */
+
+  /* Feedback */
+  --color-correct: #16a34a;
+  --color-hint: #eab308;
+  --color-retry: #ef4444;
+
+  /* Tipografía base grande (público 7-8 años) */
+  --font-size-base: 18px;
+
+  /* Tamaños táctiles: WCAG target mínimo 44x44 */
+  --tap-target: 48px;
+}
+
+/* Preferencia de tamaño de letra grande (accesibilidad) */
+:root[data-font-scale="large"] {
+  --font-size-base: 22px;
+}
+:root[data-font-scale="xlarge"] {
+  --font-size-base: 26px;
+}
+
+/* Modo oscuro futuro (placeholder) */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-surface: #0f172a;
+  --color-surface-elevated: #1e293b;
+  --color-ink: #f1f5f9;
+  --color-ink-soft: #94a3b8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
