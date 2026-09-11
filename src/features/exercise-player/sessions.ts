@@ -7,6 +7,12 @@ import { buildColoursSet } from '@/content/english/colours';
 import { buildAnimalsSet } from '@/content/english/animals';
 import { buildNumbersSet } from '@/content/english/numbers';
 import { buildMemoryAnimals, buildMemoryColours, buildMemoryNumbers } from '@/content/games/memory';
+import { buildSynonymsSet } from '@/content/spanish/synonyms';
+import { buildAntonymsSet } from '@/content/spanish/antonyms';
+import { buildSinonimsSet } from '@/content/catalan/sinonims';
+import { buildAnimalsCatalanSet } from '@/content/catalan/vocabulari';
+import { buildAnimalCategoriesSet } from '@/content/science/animals';
+import { buildBodyPartsSet } from '@/content/science/body';
 import type { ExerciseSpec, Difficulty } from '@/engine/types';
 import { hashSeed } from '@/lib/prng';
 
@@ -95,6 +101,30 @@ export const SESSIONS: Record<string, SessionDescriptor> = {
     titleKey: 'games.memoryColours',
     size: 1,
     hasDifficultyLevels: false
+  },
+  'spanish.synonyms': {
+    id: 'spanish.synonyms', topicId: 'spanish.synonyms',
+    titleKey: 'sessions.spanish.synonyms', size: 5, hasDifficultyLevels: false
+  },
+  'spanish.antonyms': {
+    id: 'spanish.antonyms', topicId: 'spanish.antonyms',
+    titleKey: 'sessions.spanish.antonyms', size: 5, hasDifficultyLevels: false
+  },
+  'catalan.sinonims': {
+    id: 'catalan.sinonims', topicId: 'catalan.sinonims',
+    titleKey: 'sessions.catalan.sinonims', size: 5, hasDifficultyLevels: false
+  },
+  'catalan.animals': {
+    id: 'catalan.animals', topicId: 'catalan.animals',
+    titleKey: 'sessions.catalan.animals', size: 5, hasDifficultyLevels: false
+  },
+  'science.animals': {
+    id: 'science.animals', topicId: 'science.animals',
+    titleKey: 'sessions.science.animals', size: 5, hasDifficultyLevels: false
+  },
+  'science.body': {
+    id: 'science.body', topicId: 'science.body',
+    titleKey: 'sessions.science.body', size: 5, hasDifficultyLevels: false
   }
 };
 
@@ -133,6 +163,18 @@ export function buildSession(sessionId: string, difficulty: Difficulty): Exercis
       return buildMemoryNumbers();
     case 'games.memory.colours':
       return buildMemoryColours();
+    case 'spanish.synonyms':
+      return buildSynonymsSet();
+    case 'spanish.antonyms':
+      return buildAntonymsSet();
+    case 'catalan.sinonims':
+      return buildSinonimsSet();
+    case 'catalan.animals':
+      return buildAnimalsCatalanSet();
+    case 'science.animals':
+      return buildAnimalCategoriesSet();
+    case 'science.body':
+      return buildBodyPartsSet();
   }
 
   throw new Error(`No content builder for topic: ${s.topicId}`);

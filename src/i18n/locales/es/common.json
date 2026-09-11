@@ -74,6 +74,18 @@
       "colours": "Colores",
       "animals": "Animales",
       "numbers": "Números"
+    },
+    "spanish": {
+      "synonyms": "Sinónimos",
+      "antonyms": "Antónimos"
+    },
+    "catalan": {
+      "sinonims": "Sinònims",
+      "animals": "Animals"
+    },
+    "science": {
+      "animals": "Animales",
+      "body": "El cuerpo"
     }
   },
   "difficulty": {

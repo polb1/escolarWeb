@@ -22,11 +22,23 @@ const TOPICS_BY_SUBJECT: Partial<Record<SubjectId, TopicChoice[]>> = {
     { sessionId: 'english.colours', titleKey: 'sessions.english.colours', icon: '🎨' },
     { sessionId: 'english.animals', titleKey: 'sessions.english.animals', icon: '🐶' },
     { sessionId: 'english.numbers', titleKey: 'sessions.english.numbers', icon: '🔢' }
+  ],
+  spanish: [
+    { sessionId: 'spanish.synonyms', titleKey: 'sessions.spanish.synonyms', icon: '🔗' },
+    { sessionId: 'spanish.antonyms', titleKey: 'sessions.spanish.antonyms', icon: '↔️' }
+  ],
+  catalan: [
+    { sessionId: 'catalan.sinonims', titleKey: 'sessions.catalan.sinonims', icon: '🔗' },
+    { sessionId: 'catalan.animals', titleKey: 'sessions.catalan.animals', icon: '🐮' }
+  ],
+  science: [
+    { sessionId: 'science.animals', titleKey: 'sessions.science.animals', icon: '🐘' },
+    { sessionId: 'science.body', titleKey: 'sessions.science.body', icon: '🧑' }
   ]
 };
 
 /** Asignaturas que muestran el camino de niveles progresivo. */
-const SUBJECTS_WITH_LEVEL_MAP: SubjectId[] = ['math', 'english'];
+const SUBJECTS_WITH_LEVEL_MAP: SubjectId[] = ['math', 'english', 'spanish', 'catalan', 'science'];
 
 export function SubjectView() {
   const { id } = useParams<{ id: SubjectId }>();

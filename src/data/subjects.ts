@@ -31,7 +31,7 @@ export const SUBJECTS: Subject[] = [
     nameKey: 'subjects.spanish.name',
     taglineKey: 'subjects.spanish.tagline',
     icon: '📖',
-    status: 'coming_soon',
+    status: 'available',
     colorVar: 'var(--color-subject-spanish)'
   },
   {
@@ -39,7 +39,7 @@ export const SUBJECTS: Subject[] = [
     nameKey: 'subjects.catalan.name',
     taglineKey: 'subjects.catalan.tagline',
     icon: '🟣',
-    status: 'coming_soon',
+    status: 'available',
     colorVar: 'var(--color-subject-catalan)'
   },
   {
@@ -47,7 +47,7 @@ export const SUBJECTS: Subject[] = [
     nameKey: 'subjects.science.name',
     taglineKey: 'subjects.science.tagline',
     icon: '🌱',
-    status: 'coming_soon',
+    status: 'available',
     colorVar: 'var(--color-subject-science)'
   }
 ];
