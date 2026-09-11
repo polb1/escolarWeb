@@ -26,10 +26,19 @@ export interface StoredMastery {
   updatedAt: number;
 }
 
+export interface StoredSessionResult {
+  sessionId: string;
+  stars: 0 | 1 | 2 | 3;
+  correct: number;
+  total: number;
+  at: number;
+}
+
 class EstudiaDatabase extends Dexie {
   attempts!: Table<StoredAttempt, number>;
   profile!: Table<StoredProfile, 'me'>;
   mastery!: Table<StoredMastery, string>;
+  sessionResults!: Table<StoredSessionResult, string>;
 
   constructor() {
     super('estudiaweb');
@@ -37,6 +46,13 @@ class EstudiaDatabase extends Dexie {
       attempts: '++id, exerciseId, topicId, subjectId, at',
       profile: 'id',
       mastery: 'topicId'
+    });
+    // v2: añade sessionResults sin migrar datos anteriores.
+    this.version(2).stores({
+      attempts: '++id, exerciseId, topicId, subjectId, at',
+      profile: 'id',
+      mastery: 'topicId',
+      sessionResults: 'sessionId'
     });
   }
 }

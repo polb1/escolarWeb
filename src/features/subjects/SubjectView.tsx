@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { SUBJECTS, type SubjectId } from '@/data/subjects';
 import { useTranslation } from 'react-i18next';
 import { SESSIONS } from '@/features/exercise-player/sessions';
+import { LevelMap, type LevelNode } from '@/features/level-map/LevelMap';
 
 interface TopicChoice {
   sessionId: string;
@@ -11,11 +12,11 @@ interface TopicChoice {
 
 const TOPICS_BY_SUBJECT: Partial<Record<SubjectId, TopicChoice[]>> = {
   math: [
+    { sessionId: 'math.comparison', titleKey: 'sessions.math.comparison', icon: '⚖️' },
+    { sessionId: 'math.ordering', titleKey: 'sessions.math.ordering', icon: '🔢' },
     { sessionId: 'math.addition', titleKey: 'sessions.math.addition', icon: '➕' },
     { sessionId: 'math.subtraction', titleKey: 'sessions.math.subtraction', icon: '➖' },
-    { sessionId: 'math.multiplication', titleKey: 'sessions.math.multiplication', icon: '✖️' },
-    { sessionId: 'math.comparison', titleKey: 'sessions.math.comparison', icon: '⚖️' },
-    { sessionId: 'math.ordering', titleKey: 'sessions.math.ordering', icon: '🔢' }
+    { sessionId: 'math.multiplication', titleKey: 'sessions.math.multiplication', icon: '✖️' }
   ],
   english: [
     { sessionId: 'english.colours', titleKey: 'sessions.english.colours', icon: '🎨' },
@@ -23,6 +24,9 @@ const TOPICS_BY_SUBJECT: Partial<Record<SubjectId, TopicChoice[]>> = {
     { sessionId: 'english.numbers', titleKey: 'sessions.english.numbers', icon: '🔢' }
   ]
 };
+
+/** Asignaturas que muestran el camino de niveles progresivo. */
+const SUBJECTS_WITH_LEVEL_MAP: SubjectId[] = ['math', 'english'];
 
 export function SubjectView() {
   const { id } = useParams<{ id: SubjectId }>();
@@ -40,6 +44,16 @@ export function SubjectView() {
       </div>
     );
   }
+
+  const useMap = id && topics && SUBJECTS_WITH_LEVEL_MAP.includes(id);
+  const mapNodes: LevelNode[] = topics
+    ? topics.map((topic) => ({
+        sessionId: topic.sessionId,
+        titleKey: topic.titleKey,
+        icon: topic.icon,
+        color: subject.colorVar
+      }))
+    : [];
 
   return (
     <div className="mx-auto max-w-3xl px-4 pt-6 pb-24">
@@ -60,7 +74,11 @@ export function SubjectView() {
         </div>
       </div>
 
-      {topics ? (
+      {useMap ? (
+        <div className="mt-8">
+          <LevelMap nodes={mapNodes} subjectColor={subject.colorVar} />
+        </div>
+      ) : topics ? (
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {topics.map((topic) => {
             const session = SESSIONS[topic.sessionId];

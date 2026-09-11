@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { db, type StoredAttempt, type StoredMastery } from '@/db/schema';
+import { db, type StoredAttempt, type StoredMastery, type StoredSessionResult } from '@/db/schema';
 import type { Difficulty } from '@/engine/types';
 import { adjustDifficulty } from '@/engine/difficulty';
 
@@ -8,8 +8,10 @@ interface ProgressState {
   streakCurrent: number;
   loaded: boolean;
   masteryByTopic: Record<string, StoredMastery>;
+  bestStarsBySession: Record<string, 0 | 1 | 2 | 3>;
   load: () => Promise<void>;
   recordAttempt: (a: Omit<StoredAttempt, 'id' | 'at'>) => Promise<void>;
+  recordSessionResult: (r: Omit<StoredSessionResult, 'at'>) => Promise<void>;
   awardXp: (amount: number) => void;
   currentDifficulty: (topicId: string) => Difficulty;
   streakForTopic: (topicId: string, limit?: number) => { correct: boolean; hintsUsed: number }[];
@@ -20,16 +22,28 @@ export const useProgressStore = create<ProgressState>((set, get) => ({
   streakCurrent: 0,
   loaded: false,
   masteryByTopic: {},
+  bestStarsBySession: {},
 
   load: async () => {
-    const [attempts, mastery] = await Promise.all([
+    const [attempts, mastery, results] = await Promise.all([
       db.attempts.orderBy('at').reverse().limit(200).toArray(),
-      db.mastery.toArray()
+      db.mastery.toArray(),
+      db.sessionResults.toArray()
     ]);
     const xp = attempts.reduce((acc, a) => acc + (a.correct ? 10 : 3), 0);
     const map: Record<string, StoredMastery> = {};
     for (const m of mastery) map[m.topicId] = m;
-    set({ xp, masteryByTopic: map, loaded: true });
+    const starMap: Record<string, 0 | 1 | 2 | 3> = {};
+    for (const r of results) starMap[r.sessionId] = r.stars;
+    set({ xp, masteryByTopic: map, bestStarsBySession: starMap, loaded: true });
+  },
+
+  recordSessionResult: async (r) => {
+    const prev = await db.sessionResults.get(r.sessionId);
+    if (prev && prev.stars >= r.stars) return; // solo guardamos el mejor
+    const stored: StoredSessionResult = { ...r, at: Date.now() };
+    await db.sessionResults.put(stored);
+    set((s) => ({ bestStarsBySession: { ...s.bestStarsBySession, [r.sessionId]: r.stars } }));
   },
 
   recordAttempt: async (a) => {

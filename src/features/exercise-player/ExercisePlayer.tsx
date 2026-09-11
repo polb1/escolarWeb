@@ -20,6 +20,7 @@ export function ExercisePlayer() {
   const requestedDifficulty = parseDifficulty(searchParams.get('d')) ?? 1;
   const profile = useProfileStore((s) => s.profile);
   const recordAttempt = useProgressStore((s) => s.recordAttempt);
+  const recordSessionResult = useProgressStore((s) => s.recordSessionResult);
   const awardXp = useProgressStore((s) => s.awardXp);
 
   const [items, setItems] = useState<ExerciseSpec[] | null>(null);
@@ -139,7 +140,17 @@ export function ExercisePlayer() {
 
   if (!items || !current) {
     if (finished) {
-      return <SessionResult correct={correctCount} total={items!.length} firstTry={firstTryCount} xp={xpEarned} />;
+      const total = items!.length;
+      const stars = (firstTryCount === total
+        ? 3
+        : correctCount === total
+          ? 2
+          : correctCount >= Math.ceil(total * 0.6)
+            ? 1
+            : 0) as 0 | 1 | 2 | 3;
+      // Guardado idempotente: sólo escribe si mejora el récord.
+      void recordSessionResult({ sessionId, stars, correct: correctCount, total });
+      return <SessionResult correct={correctCount} total={total} firstTry={firstTryCount} xp={xpEarned} />;
     }
     return (
       <div className="p-8 text-center text-inkSoft">
