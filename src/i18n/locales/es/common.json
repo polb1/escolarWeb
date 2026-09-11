@@ -15,7 +15,9 @@
     "todayMissionEmpty": "Elige una asignatura para empezar",
     "seeProgress": "Mi progreso",
     "seeAchievements": "Mis logros",
-    "playGames": "Juegos"
+    "playGames": "Juegos",
+    "play": "Jugar",
+    "continue": "Continuar"
   },
   "subjects": {
     "math": { "name": "Matemáticas", "tagline": "Números, sumas y retos" },

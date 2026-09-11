@@ -15,7 +15,9 @@
     "todayMissionEmpty": "Tria una assignatura per començar",
     "seeProgress": "El meu progrés",
     "seeAchievements": "Els meus assoliments",
-    "playGames": "Jocs"
+    "playGames": "Jocs",
+    "play": "Jugar",
+    "continue": "Continuar"
   },
   "subjects": {
     "math": { "name": "Matemàtiques", "tagline": "Nombres, sumes i reptes" },
