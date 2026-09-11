@@ -5,6 +5,7 @@ import { Mascot } from '@/ui/mascot/Mascot';
 import { useProfileStore } from '@/stores/profile';
 import type { AppLanguage } from '@/i18n';
 import i18n from '@/i18n';
+import { LanguageSwitcher } from '@/ui/layout/LanguageSwitcher';
 
 const AVATARS = ['🦊', '🐼', '🦄', '🐸', '🦁', '🐧', '🐙', '🦉'];
 
@@ -25,6 +26,7 @@ export function OnboardingWizard() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
+      <LanguageSwitcher standalone />
       <div className="w-full max-w-lg rounded-3xl bg-surfaceElevated shadow-card p-5 md:p-8 border border-black/5">
         <div className="flex items-center gap-3 md:gap-4 mb-6">
           <div className="flex-shrink-0 w-14 h-14 md:w-[72px] md:h-[72px]">

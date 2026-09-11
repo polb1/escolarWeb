@@ -5,29 +5,55 @@ import { translatePath } from '@/lib/routes';
 import { useProfileStore } from '@/stores/profile';
 import type { AppLanguage } from '@/i18n';
 
+interface Props {
+  /** Cuando la app está fuera del router (onboarding), no traducir URL. */
+  standalone?: boolean;
+}
+
 /**
- * Selector de idioma flotante, esquina superior derecha. Al pulsar cambia
- * i18n Y traduce la ruta actual — para que un enlace en catalán acabe en
- * su equivalente castellano (o al revés) en lugar de romperse.
- * También persiste la elección en el perfil, si existe.
+ * Selector de idioma flotante en la esquina superior derecha. Al pulsar
+ * cambia i18n y persiste la elección en el perfil (si existe). En modo
+ * ruteado también traduce la URL actual — para que un enlace en catalán
+ * acabe en su equivalente castellano al cambiar.
  */
-export function LanguageSwitcher() {
-  const { i18n: i18nHook } = useTranslation();
+export function LanguageSwitcher({ standalone = false }: Props = {}) {
+  return standalone ? <StandaloneSwitcher /> : <RoutedSwitcher />;
+}
+
+function StandaloneSwitcher() {
+  return <SwitcherShell onSwitch={async () => {}} />;
+}
+
+function RoutedSwitcher() {
   const location = useLocation();
   const navigate = useNavigate();
-  const profile = useProfileStore((s) => s.profile);
-  const updateProfile = useProfileStore((s) => s.update);
 
-  const current: AppLanguage = i18nHook.language.startsWith('ca') ? 'ca' : 'es';
-
-  async function switchTo(next: AppLanguage) {
-    if (next === current) return;
-    await i18n.changeLanguage(next);
-    if (profile) await updateProfile({ language: next });
-    const translated = translatePath(location.pathname, current, next);
+  async function onSwitch(from: AppLanguage, to: AppLanguage) {
+    const translated = translatePath(location.pathname, from, to);
     if (translated !== location.pathname) {
       navigate(translated + location.search, { replace: true });
     }
+  }
+
+  return <SwitcherShell onSwitch={onSwitch} />;
+}
+
+/** Presentación pura: dos botones ES/CA. La navegación es una dependencia inyectada. */
+function SwitcherShell({
+  onSwitch
+}: {
+  onSwitch: (from: AppLanguage, to: AppLanguage) => Promise<void>;
+}) {
+  const { i18n: i18nHook } = useTranslation();
+  const profile = useProfileStore((s) => s.profile);
+  const updateProfile = useProfileStore((s) => s.update);
+  const current: AppLanguage = i18nHook.language.startsWith('ca') ? 'ca' : 'es';
+
+  async function switchTo(target: AppLanguage) {
+    if (target === current) return;
+    await i18n.changeLanguage(target);
+    if (profile) await updateProfile({ language: target });
+    await onSwitch(current, target);
   }
 
   return (

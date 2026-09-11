@@ -22,7 +22,7 @@ export function AppShell() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <LanguageSwitcher />
+      {!fullscreen && <LanguageSwitcher />}
       <main className={`flex-1 ${fullscreen ? '' : 'pb-20'}`}>
         <Outlet />
       </main>
