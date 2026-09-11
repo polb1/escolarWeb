@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { SESSIONS } from './sessions';
 import { Mascot } from '@/ui/mascot/Mascot';
 import type { Difficulty } from '@/engine/types';
+import { getCurriculumFor } from '@/data/curriculum';
 
 interface DifficultyChoice {
   d: Difficulty;
@@ -18,6 +19,27 @@ interface DifficultyChoice {
  * Solo se ofrecen 3 niveles al niño (1, 2, 3). Los niveles 4-5 se reservan
  * para la adaptatividad interna cuando el niño demuestra dominio.
  */
+function CurriculumFootnote({ sessionId }: { sessionId: string }) {
+  const tags = getCurriculumFor(sessionId);
+  if (tags.length === 0) return null;
+  return (
+    <details className="mt-6 rounded-2xl bg-black/5 p-3 text-sm text-inkSoft">
+      <summary className="cursor-pointer font-bold">📘 Currículo oficial</summary>
+      <ul className="mt-2 space-y-2">
+        {tags.map((tag) => (
+          <li key={tag.code}>
+            <span className="font-mono text-xs bg-white rounded px-1 py-0.5 mr-2">{tag.code}</span>
+            {tag.text}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-xs opacity-75">
+        Referencia: Real Decreto 157/2022, ANEXO II, Educación Primaria, Primer Ciclo.
+      </p>
+    </details>
+  );
+}
+
 const CHOICES: DifficultyChoice[] = [
   { d: 1, labelKey: 'difficulty.easy', descKey: 'difficulty.easyDesc', emoji: '🌱', color: '#22c55e' },
   { d: 2, labelKey: 'difficulty.medium', descKey: 'difficulty.mediumDesc', emoji: '⭐', color: '#3b82f6' },
@@ -54,6 +76,8 @@ export function SessionStart() {
           <p className="text-inkSoft mt-1">{t('difficulty.prompt')}</p>
         </div>
       </div>
+
+      <CurriculumFootnote sessionId={sessionId} />
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
         {CHOICES.map((c) => (

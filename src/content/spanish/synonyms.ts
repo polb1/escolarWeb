@@ -26,6 +26,7 @@ export function buildSynonymsSet(): MultipleChoiceSpec[] {
       subjectId: 'spanish',
       topicId: 'spanish.synonyms',
       difficulty: 1,
+      curriculum: ['RD.LCL.D.vocab'],
       question: {
         es: `¿Qué palabra significa lo mismo que "${p.word}"?`,
         ca: `Quina paraula significa el mateix que "${p.word}"?`

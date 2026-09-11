@@ -69,11 +69,14 @@ Progress
 
 ## Sobre currículo
 
-Los topics y niveles son **borrador pedagógico** hasta que se realice la auditoría formal contra:
-- España: **Real Decreto 157/2022** (enseñanzas mínimas de Primaria).
-- Cataluña: **Decret 175/2022** (ordenació de l'educació bàsica).
+**Matemáticas (primer ciclo)** y **Lengua Castellana (vocabulario)** están auditadas contra el **Real Decreto 157/2022, ANEXO II**. El mapeo se documenta en [docs/CURRICULUM.md](docs/CURRICULUM.md), con:
+- Los códigos oficiales de cada saber básico usados en la app (`RD.MAT.A.3`, `RD.LCL.D.vocab`, ...).
+- La justificación de cada topic contra el saber básico correspondiente.
+- Nota importante: **`math.multiplication`** no está en primer ciclo del RD; se ofrece como introducción opcional.
 
-Cada `Exercise` puede etiquetarse con `curriculum: ['MAT.1.2.a', ...]` cuando se complete la auditoría.
+Cada `ExerciseSpec` cubierta lleva `curriculum: [...]` con los códigos. La pantalla previa a cada sesión muestra un desplegable "📘 Currículo oficial" con el texto literal del BOE — transparencia para adultos.
+
+**Pendiente**: Inglés, Català, Medi, Juegos. La parte catalana se auditará contra el **Decret 175/2022**.
 
 ## Licencia
 

@@ -26,6 +26,7 @@ export function buildAntonymsSet(): MultipleChoiceSpec[] {
       subjectId: 'spanish',
       topicId: 'spanish.antonyms',
       difficulty: 1,
+      curriculum: ['RD.LCL.D.vocab'],
       question: {
         es: `¿Qué palabra significa lo contrario de "${p.word}"?`,
         ca: `Quina paraula significa el contrari de "${p.word}"?`

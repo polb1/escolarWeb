@@ -40,6 +40,7 @@ export function generateOrdering({
     subjectId: 'math',
     topicId: 'math.ordering',
     difficulty,
+    curriculum: ['RD.MAT.A.4'],
     prompt: {
       es: direction === 'asc' ? 'Ordena de menor a mayor' : 'Ordena de mayor a menor',
       ca: direction === 'asc' ? 'Ordena de menor a més gran' : 'Ordena de més gran a menor'

@@ -44,6 +44,7 @@ export function generateComparison({ difficulty, seed }: ComparisonParams): Mult
     subjectId: 'math',
     topicId: 'math.comparison',
     difficulty,
+    curriculum: ['RD.MAT.A.4'],
     question: {
       es: '¿Qué número es mayor?',
       ca: 'Quin nombre és més gran?'

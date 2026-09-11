@@ -58,6 +58,7 @@ export function generateSubtraction({ difficulty, seed }: SubtractionParams): Ma
     subjectId: 'math',
     topicId: 'math.subtraction',
     difficulty,
+    curriculum: ['RD.MAT.A.3', 'RD.MAT.A.4'],
     render: `${a} − ${b}`,
     answer,
     columns: [String(a).padStart(3, ' '), `− ${String(b).padStart(2, ' ')}`],
