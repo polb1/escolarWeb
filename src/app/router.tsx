@@ -7,6 +7,8 @@ import { ExercisePlayer } from '@/features/exercise-player/ExercisePlayer';
 import { SessionStart } from '@/features/exercise-player/SessionStart';
 import { ProgressPage } from '@/features/progress/ProgressPage';
 import { AchievementsPage } from '@/features/achievements/AchievementsPage';
+import { ProfilePage } from '@/features/profile/ProfilePage';
+import { SettingsPage } from '@/features/settings/SettingsPage';
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +22,8 @@ export const router = createBrowserRouter([
       { path: 'games', element: <Placeholder title="Juegos" icon="🎮" /> },
       { path: 'progress', element: <ProgressPage /> },
       { path: 'achievements', element: <AchievementsPage /> },
-      { path: 'profile', element: <Placeholder title="Perfil" icon="🧒" /> },
+      { path: 'profile', element: <ProfilePage /> },
+      { path: 'settings', element: <SettingsPage /> },
       { path: '*', element: <Navigate to="/" replace /> }
     ]
   }

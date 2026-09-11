@@ -110,6 +110,15 @@
     "unlocked": "Conseguido",
     "locked": "Aún no"
   },
+  "profilePage": {
+    "hi": "Hola",
+    "edit": "Editar",
+    "editTitle": "Editar mi perfil",
+    "reset": "Empezar de cero",
+    "resetTitle": "¿Empezar de cero?",
+    "resetWarn": "Perderás tus estrellas, tu racha y tus puntos.",
+    "resetConfirm": "Sí, borrar"
+  },
   "achievements": {
     "first_steps": { "name": "Primeros pasos", "desc": "Haz tu primer ejercicio" },
     "ten_correct": { "name": "Diez aciertos", "desc": "Acierta 10 ejercicios" },

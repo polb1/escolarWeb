@@ -110,6 +110,15 @@
     "unlocked": "Aconseguit",
     "locked": "Encara no"
   },
+  "profilePage": {
+    "hi": "Hola",
+    "edit": "Editar",
+    "editTitle": "Editar el meu perfil",
+    "reset": "Començar de zero",
+    "resetTitle": "Començar de zero?",
+    "resetWarn": "Perdràs les estrelles, la ratxa i els punts.",
+    "resetConfirm": "Sí, esborrar"
+  },
   "achievements": {
     "first_steps": { "name": "Primeres passes", "desc": "Fes el teu primer exercici" },
     "ten_correct": { "name": "Deu encerts", "desc": "Encerta 10 exercicis" },
