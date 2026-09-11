@@ -9,6 +9,7 @@ import type { AttemptResult, Difficulty, ExerciseSpec } from '@/engine/types';
 import { Mascot } from '@/ui/mascot/Mascot';
 import { useProgressStore, loadRecentAttempts } from '@/stores/progress';
 import { useStreakStore } from '@/stores/streak';
+import { playBeep, speak, stripForSpeech } from '@/lib/audio';
 import { useProfileStore } from '@/stores/profile';
 import { adjustDifficulty, computeXp } from '@/engine/difficulty';
 
@@ -104,6 +105,7 @@ export function ExercisePlayer() {
     const nextAttempts = attemptCount + 1;
     setAttemptCount(nextAttempts);
     if (result.correct) {
+      playBeep('good');
       const firstTry = nextAttempts === 1;
       const xp = computeXp({
         difficulty: current.difficulty,
@@ -126,6 +128,7 @@ export function ExercisePlayer() {
       awardXp(xp);
       setTimeout(advance, 900);
     } else {
+      playBeep('bad');
       setFeedback('retry');
       setTimeout(() => setFeedback('idle'), 800);
       if (nextAttempts >= 2) setHintOpen(true);
@@ -186,7 +189,15 @@ export function ExercisePlayer() {
           >
             <HelpCircle size={20} aria-hidden="true" />
           </button>
-          <button type="button" aria-label={t('player.audio')} className="rounded-full bg-white shadow-card p-2">
+          <button
+            type="button"
+            aria-label={t('player.audio')}
+            className="rounded-full bg-white shadow-card p-2"
+            onClick={() => {
+              const text = pickSpeechText(current, lang);
+              if (text) speak(text, current.subjectId === 'english' ? 'en-GB' : lang === 'ca' ? 'ca-ES' : 'es-ES');
+            }}
+          >
             <Volume2 size={20} aria-hidden="true" />
           </button>
         </div>
@@ -237,6 +248,21 @@ export function ExercisePlayer() {
 
 function computeXpPreview(spec: ExerciseSpec): number {
   return computeXp({ difficulty: spec.difficulty, correct: true, firstTry: true, hintsUsed: 0 });
+}
+
+function pickSpeechText(spec: ExerciseSpec, lang: 'es' | 'ca'): string | null {
+  switch (spec.type) {
+    case 'multiple_choice':
+      return stripForSpeech(spec.question[lang]);
+    case 'image_selection':
+      return stripForSpeech(spec.question[lang]);
+    case 'matching':
+      return stripForSpeech(spec.prompt[lang]);
+    case 'ordering':
+      return stripForSpeech(spec.prompt[lang]);
+    case 'math_operation':
+      return spec.render.replace('×', 'por').replace('−', 'menos').replace('+', 'más');
+  }
 }
 
 function parseDifficulty(raw: string | null): Difficulty | null {
