@@ -110,6 +110,18 @@
     "unlocked": "Aconseguit",
     "locked": "Encara no"
   },
+  "gamesPage": {
+    "title": "Jocs",
+    "subtitle": "Diverteix-te i aprèn jugant"
+  },
+  "games": {
+    "memoryAnimals": "Memòria: Animals",
+    "memoryAnimalsDesc": "Troba les parelles d'animals",
+    "memoryColours": "Memòria: Colors",
+    "memoryColoursDesc": "Empareja el color amb el seu nom en anglès",
+    "memoryNumbers": "Memòria: Nombres",
+    "memoryNumbersDesc": "Empareja cada nombre amb la seva quantitat"
+  },
   "profilePage": {
     "hi": "Hola",
     "edit": "Editar",

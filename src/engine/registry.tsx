@@ -5,6 +5,7 @@ import { MathOperationRenderer } from './renderers/MathOperation';
 import { MatchingRenderer } from './renderers/Matching';
 import { ImageSelectionRenderer } from './renderers/ImageSelection';
 import { OrderingRenderer } from './renderers/Ordering';
+import { MemoryRenderer } from './renderers/Memory';
 
 /** Un renderer recibe la spec y un callback para reportar cada intento. */
 export interface RendererProps<S extends ExerciseSpec = ExerciseSpec> {
@@ -23,7 +24,8 @@ const REGISTRY: Record<ExerciseType, AnyRenderer> = {
   math_operation: MathOperationRenderer as unknown as AnyRenderer,
   matching: MatchingRenderer as unknown as AnyRenderer,
   image_selection: ImageSelectionRenderer as unknown as AnyRenderer,
-  ordering: OrderingRenderer as unknown as AnyRenderer
+  ordering: OrderingRenderer as unknown as AnyRenderer,
+  memory: MemoryRenderer as unknown as AnyRenderer
 };
 
 export function getRenderer(type: ExerciseType): AnyRenderer {

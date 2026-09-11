@@ -7,7 +7,8 @@ export type ExerciseType =
   | 'math_operation'
   | 'matching'
   | 'image_selection'
-  | 'ordering';
+  | 'ordering'
+  | 'memory';
 
 export interface Localized {
   es: string;
@@ -66,12 +67,20 @@ export interface OrderingSpec extends ExerciseBase {
   direction: 'asc' | 'desc';
 }
 
+export interface MemorySpec extends ExerciseBase {
+  type: 'memory';
+  prompt: Localized;
+  /** Pares que hay que encontrar. Cada par produce 2 cartas con el mismo `pairId`. */
+  pairs: { pairId: string; a: { glyph: string; label?: string }; b: { glyph: string; label?: string } }[];
+}
+
 export type ExerciseSpec =
   | MultipleChoiceSpec
   | MathOperationSpec
   | MatchingSpec
   | ImageSelectionSpec
-  | OrderingSpec;
+  | OrderingSpec
+  | MemorySpec;
 
 /** Resultado de UN intento del jugador dentro de un ejercicio. */
 export interface AttemptResult {

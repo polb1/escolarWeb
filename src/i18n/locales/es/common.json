@@ -110,6 +110,18 @@
     "unlocked": "Conseguido",
     "locked": "Aún no"
   },
+  "gamesPage": {
+    "title": "Juegos",
+    "subtitle": "Diviértete y aprende jugando"
+  },
+  "games": {
+    "memoryAnimals": "Memoria: Animales",
+    "memoryAnimalsDesc": "Encuentra las parejas de animales",
+    "memoryColours": "Memoria: Colores",
+    "memoryColoursDesc": "Empareja el color con su nombre en inglés",
+    "memoryNumbers": "Memoria: Números",
+    "memoryNumbersDesc": "Empareja cada número con su cantidad"
+  },
   "profilePage": {
     "hi": "Hola",
     "edit": "Editar",

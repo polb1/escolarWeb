@@ -260,6 +260,8 @@ function pickSpeechText(spec: ExerciseSpec, lang: 'es' | 'ca'): string | null {
       return stripForSpeech(spec.prompt[lang]);
     case 'ordering':
       return stripForSpeech(spec.prompt[lang]);
+    case 'memory':
+      return stripForSpeech(spec.prompt[lang]);
     case 'math_operation':
       return spec.render.replace('×', 'por').replace('−', 'menos').replace('+', 'más');
   }

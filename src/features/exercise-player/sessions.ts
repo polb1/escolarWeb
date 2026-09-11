@@ -6,6 +6,7 @@ import { generateMultiplication } from '@/engine/generators/multiplication';
 import { buildColoursSet } from '@/content/english/colours';
 import { buildAnimalsSet } from '@/content/english/animals';
 import { buildNumbersSet } from '@/content/english/numbers';
+import { buildMemoryAnimals, buildMemoryColours, buildMemoryNumbers } from '@/content/games/memory';
 import type { ExerciseSpec, Difficulty } from '@/engine/types';
 import { hashSeed } from '@/lib/prng';
 
@@ -73,6 +74,27 @@ export const SESSIONS: Record<string, SessionDescriptor> = {
     titleKey: 'sessions.english.numbers',
     size: 5,
     hasDifficultyLevels: false
+  },
+  'games.memory.animals': {
+    id: 'games.memory.animals',
+    topicId: 'games.memory.animals',
+    titleKey: 'games.memoryAnimals',
+    size: 1,
+    hasDifficultyLevels: false
+  },
+  'games.memory.numbers': {
+    id: 'games.memory.numbers',
+    topicId: 'games.memory.numbers',
+    titleKey: 'games.memoryNumbers',
+    size: 1,
+    hasDifficultyLevels: false
+  },
+  'games.memory.colours': {
+    id: 'games.memory.colours',
+    topicId: 'games.memory.colours',
+    titleKey: 'games.memoryColours',
+    size: 1,
+    hasDifficultyLevels: false
   }
 };
 
@@ -105,6 +127,12 @@ export function buildSession(sessionId: string, difficulty: Difficulty): Exercis
       return buildAnimalsSet();
     case 'english.numbers':
       return buildNumbersSet();
+    case 'games.memory.animals':
+      return buildMemoryAnimals();
+    case 'games.memory.numbers':
+      return buildMemoryNumbers();
+    case 'games.memory.colours':
+      return buildMemoryColours();
   }
 
   throw new Error(`No content builder for topic: ${s.topicId}`);
