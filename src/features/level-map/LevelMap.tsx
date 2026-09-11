@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Lock } from 'lucide-react';
 import { SESSIONS } from '@/features/exercise-player/sessions';
 import { useProgressStore } from '@/stores/progress';
+import { usePath } from '@/lib/usePath';
 
 export interface LevelNode {
   sessionId: string;
@@ -25,6 +26,7 @@ interface Props {
  */
 export function LevelMap({ nodes, subjectColor }: Props) {
   const { t } = useTranslation();
+  const path = usePath();
   const bestStars = useProgressStore((s) => s.bestStarsBySession);
 
   const layout = useMemo(() => buildLayout(nodes.length), [nodes.length]);
@@ -82,8 +84,8 @@ export function LevelMap({ nodes, subjectColor }: Props) {
           const isOpen = unlocked[i];
           const session = SESSIONS[node.sessionId];
           const to = session?.hasDifficultyLevels
-            ? `/start/${node.sessionId}`
-            : `/play/${node.sessionId}`;
+            ? path('start', node.sessionId)
+            : path('play', node.sessionId);
 
           return (
             <div

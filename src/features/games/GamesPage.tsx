@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mascot } from '@/ui/mascot/Mascot';
+import { usePath } from '@/lib/usePath';
 
 interface Game {
   sessionId: string;
@@ -37,6 +38,7 @@ const GAMES: Game[] = [
 
 export function GamesPage() {
   const { t } = useTranslation();
+  const path = usePath();
   return (
     <div className="mx-auto max-w-3xl px-4 pt-6 pb-24">
       <div className="flex items-center gap-3 md:gap-4">
@@ -53,7 +55,7 @@ export function GamesPage() {
         {GAMES.map((game) => (
           <motion.div key={game.sessionId} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              to={`/play/${game.sessionId}`}
+              to={path('play', game.sessionId)}
               className="block rounded-3xl bg-surfaceElevated shadow-card p-6 border-4"
               style={{ borderColor: game.color }}
             >

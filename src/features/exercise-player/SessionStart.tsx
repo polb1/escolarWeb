@@ -5,6 +5,7 @@ import { SESSIONS } from './sessions';
 import { Mascot } from '@/ui/mascot/Mascot';
 import type { Difficulty } from '@/engine/types';
 import { getCurriculumFor } from '@/data/curriculum';
+import { usePath } from '@/lib/usePath';
 
 interface DifficultyChoice {
   d: Difficulty;
@@ -72,6 +73,7 @@ export function SessionStart() {
   const { sessionId = '' } = useParams<{ sessionId: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const path = usePath();
   const session = SESSIONS[sessionId];
 
   if (!session) {
@@ -110,7 +112,7 @@ export function SessionStart() {
             type="button"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => navigate(`/play/${sessionId}?d=${c.d}`)}
+            onClick={() => navigate(`${path('play', sessionId)}?d=${c.d}`)}
             className="rounded-2xl md:rounded-3xl bg-surfaceElevated shadow-card p-4 md:p-6 text-left border-4 focus-visible:outline-none"
             style={{ borderColor: c.color }}
           >

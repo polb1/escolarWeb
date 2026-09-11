@@ -4,9 +4,11 @@ import { Volume2, VolumeX, Type, Languages } from 'lucide-react';
 import i18n from '@/i18n';
 import { usePreferencesStore, type FontScale } from '@/stores/preferences';
 import { useProfileStore } from '@/stores/profile';
+import { usePath } from '@/lib/usePath';
 
 export function SettingsPage() {
   const { t } = useTranslation();
+  const path = usePath();
   const prefs = usePreferencesStore();
   const profile = useProfileStore((s) => s.profile);
   const updateProfile = useProfileStore((s) => s.update);
@@ -18,7 +20,7 @@ export function SettingsPage() {
 
   return (
     <div className="mx-auto max-w-xl px-4 pt-6 pb-24">
-      <Link to="/profile" className="text-inkSoft font-bold">
+      <Link to={path('profile')} className="text-inkSoft font-bold">
         ← {t('actions.back')}
       </Link>
 

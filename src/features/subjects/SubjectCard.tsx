@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Subject } from '@/data/subjects';
+import { usePath } from '@/lib/usePath';
 
 interface Props {
   subject: Subject;
@@ -9,6 +10,7 @@ interface Props {
 
 export function SubjectCard({ subject }: Props) {
   const { t } = useTranslation();
+  const path = usePath();
   const disabled = subject.status === 'coming_soon';
 
   const body = (
@@ -50,7 +52,7 @@ export function SubjectCard({ subject }: Props) {
 
   return (
     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-      <Link to={`/subject/${subject.id}`} className={className} style={style}>
+      <Link to={path('subject', subject.id)} className={className} style={style}>
         {body}
       </Link>
     </motion.div>

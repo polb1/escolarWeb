@@ -7,11 +7,13 @@ import { useProfileStore } from '@/stores/profile';
 import { useProgressStore } from '@/stores/progress';
 import { useStreakStore } from '@/stores/streak';
 import { db } from '@/db/schema';
+import { usePath } from '@/lib/usePath';
 
 const AVATARS = ['🦊', '🐼', '🦄', '🐸', '🦁', '🐧', '🐙', '🦉'];
 
 export function ProfilePage() {
   const { t } = useTranslation();
+  const path = usePath();
   const profile = useProfileStore((s) => s.profile);
   const updateProfile = useProfileStore((s) => s.update);
   const resetProfile = useProfileStore((s) => s.reset);
@@ -74,7 +76,7 @@ export function ProfilePage() {
 
       <div className="mt-8 flex flex-col gap-3">
         <Link
-          to="/settings"
+          to={path('settings')}
           className="rounded-2xl bg-surfaceElevated shadow-card p-4 border border-black/5 flex items-center gap-3 font-bold"
         >
           <Settings size={22} aria-hidden="true" />

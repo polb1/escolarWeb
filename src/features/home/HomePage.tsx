@@ -9,6 +9,7 @@ import { useProfileStore } from '@/stores/profile';
 import { useStreakStore } from '@/stores/streak';
 import { db } from '@/db/schema';
 import { SESSIONS } from '@/features/exercise-player/sessions';
+import { usePath } from '@/lib/usePath';
 
 function greetingKey(now = new Date()) {
   const h = now.getHours();
@@ -35,6 +36,7 @@ export function HomePage() {
   const { t } = useTranslation();
   const profile = useProfileStore((s) => s.profile);
   const streak = useStreakStore((s) => s.current);
+  const path = usePath();
   const name = profile?.nickname ?? t('greeting.anonymous');
 
   const mission = pickTodaysMission();
@@ -89,7 +91,7 @@ export function HomePage() {
               <div className="text-base md:text-lg font-black mt-1 truncate">{t(missionSession.titleKey)}</div>
             </div>
             <Link
-              to={missionSession.hasDifficultyLevels ? `/start/${mission}` : `/play/${mission}`}
+              to={missionSession.hasDifficultyLevels ? path('start', mission) : path('play', mission)}
               className="rounded-2xl px-4 py-2.5 md:py-3 font-black text-white bg-brand whitespace-nowrap flex-shrink-0"
             >
               {t('home.play')}
@@ -101,7 +103,11 @@ export function HomePage() {
       {lastSession && lastSession.id !== missionSession?.id && (
         <section aria-labelledby="continue" className="mb-6">
           <Link
-            to={lastSession.hasDifficultyLevels ? `/start/${lastSession.id}` : `/play/${lastSession.id}`}
+            to={
+              lastSession.hasDifficultyLevels
+                ? path('start', lastSession.id)
+                : path('play', lastSession.id)
+            }
             className="block rounded-2xl bg-surfaceElevated shadow-card p-4 border-l-8 border-brand"
           >
             <div className="text-xs font-bold uppercase tracking-wide text-inkSoft">
@@ -119,9 +125,9 @@ export function HomePage() {
       </section>
 
       <nav aria-label="Secciones" className="mt-8 grid grid-cols-3 gap-3">
-        <FooterLink to="/progress" icon="⭐" label={t('home.seeProgress')} />
-        <FooterLink to="/achievements" icon="🏆" label={t('home.seeAchievements')} />
-        <FooterLink to="/games" icon="🎮" label={t('home.playGames')} />
+        <FooterLink to={path('progress')} icon="⭐" label={t('home.seeProgress')} />
+        <FooterLink to={path('achievements')} icon="🏆" label={t('home.seeAchievements')} />
+        <FooterLink to={path('games')} icon="🎮" label={t('home.playGames')} />
       </nav>
     </div>
   );

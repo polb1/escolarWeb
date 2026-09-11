@@ -3,6 +3,7 @@ import { SUBJECTS, type SubjectId } from '@/data/subjects';
 import { useTranslation } from 'react-i18next';
 import { SESSIONS } from '@/features/exercise-player/sessions';
 import { LevelMap, type LevelNode } from '@/features/level-map/LevelMap';
+import { usePath } from '@/lib/usePath';
 
 interface TopicChoice {
   sessionId: string;
@@ -43,6 +44,7 @@ const SUBJECTS_WITH_LEVEL_MAP: SubjectId[] = ['math', 'english', 'spanish', 'cat
 export function SubjectView() {
   const { id } = useParams<{ id: SubjectId }>();
   const { t } = useTranslation();
+  const path = usePath();
   const subject = SUBJECTS.find((s) => s.id === id);
   const topics = id ? TOPICS_BY_SUBJECT[id] : undefined;
 
@@ -95,8 +97,8 @@ export function SubjectView() {
           {topics.map((topic) => {
             const session = SESSIONS[topic.sessionId];
             const to = session?.hasDifficultyLevels
-              ? `/start/${topic.sessionId}`
-              : `/play/${topic.sessionId}`;
+              ? path('start', topic.sessionId)
+              : path('play', topic.sessionId);
             return (
               <Link
                 key={topic.sessionId}
