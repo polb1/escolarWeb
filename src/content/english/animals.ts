@@ -34,9 +34,10 @@ export function buildAnimalsSet(): MultipleChoiceSpec[] {
       topicId: 'english.animals',
       difficulty: 1,
       question: {
-        es: `${animal.emoji}  What animal is this?`,
-        ca: `${animal.emoji}  What animal is this?`
+        es: 'What animal is this?',
+        ca: 'What animal is this?'
       },
+      visual: { glyph: animal.emoji, label: animal.word },
       options: options.map((w) => ({ es: w, ca: w })),
       correctIndex: options.indexOf(animal.word),
       hint: {

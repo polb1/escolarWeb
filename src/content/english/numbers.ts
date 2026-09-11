@@ -32,9 +32,10 @@ export function buildNumbersSet(): MultipleChoiceSpec[] {
       topicId: 'english.numbers',
       difficulty: 1,
       question: {
-        es: `${n.digit}  →  How do you say this in English?`,
-        ca: `${n.digit}  →  How do you say this in English?`
+        es: 'How do you say this in English?',
+        ca: 'How do you say this in English?'
       },
+      visual: { glyph: n.digit, label: n.word },
       options: options.map((w) => ({ es: w, ca: w })),
       correctIndex: options.indexOf(n.word),
       hint: {

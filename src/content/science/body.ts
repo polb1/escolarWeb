@@ -34,9 +34,10 @@ export function buildBodyPartsSet(): MultipleChoiceSpec[] {
       topicId: 'science.body',
       difficulty: 1,
       question: {
-        es: `${p.emoji}  ¿Qué parte del cuerpo es?`,
-        ca: `${p.emoji}  Quina part del cos és?`
+        es: '¿Qué parte del cuerpo es?',
+        ca: 'Quina part del cos és?'
       },
+      visual: { glyph: p.emoji, label: p.es },
       options: es.map((word, idx) => ({ es: word, ca: ca[idx]! })),
       correctIndex: es.indexOf(p.es),
       hint: {

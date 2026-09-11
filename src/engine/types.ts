@@ -33,6 +33,12 @@ export interface MultipleChoiceSpec extends ExerciseBase {
   question: Localized;
   options: Localized[];
   correctIndex: number;
+  /**
+   * Elemento visual opcional. Cuando se rellena, el renderer lo muestra en un
+   * recuadro grande y separado ARRIBA del texto de la pregunta — evita que el
+   * emoji quede "pegado" al texto y se confunda con puntuación.
+   */
+  visual?: { glyph: string; label?: string };
 }
 
 export interface MathOperationSpec extends ExerciseBase {

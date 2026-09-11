@@ -32,6 +32,17 @@ export function MultipleChoiceRenderer({
 
   return (
     <div className="w-full">
+      {spec.visual && (
+        <div className="mx-auto mb-6 max-w-[280px] rounded-3xl bg-surfaceElevated shadow-card border border-black/5 aspect-square grid place-items-center">
+          <div
+            className="text-[7rem] md:text-[9rem] leading-none select-none"
+            aria-label={spec.visual.label}
+            role="img"
+          >
+            {spec.visual.glyph}
+          </div>
+        </div>
+      )}
       <h2 className="font-black text-2xl md:text-3xl text-center mb-6">{spec.question[lang]}</h2>
 
       {showHint && spec.hint && (

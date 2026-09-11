@@ -39,9 +39,10 @@ export function buildAnimalsCatalanSet(): MultipleChoiceSpec[] {
       topicId: 'catalan.animals',
       difficulty: 1,
       question: {
-        es: `${a.emoji}  ¿Cómo se dice este animal en catalán?`,
-        ca: `${a.emoji}  Com es diu aquest animal?`
+        es: '¿Cómo se dice este animal en catalán?',
+        ca: 'Com es diu aquest animal?'
       },
+      visual: { glyph: a.emoji, label: a.word },
       options: options.map((w) => ({ es: w, ca: w })),
       correctIndex: options.indexOf(a.word),
       hint: {

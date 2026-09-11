@@ -40,9 +40,10 @@ export function buildColoursSet(): MultipleChoiceSpec[] {
       topicId: 'english.colours',
       difficulty: 1,
       question: {
-        es: `${c.emoji}  What colour?`,
-        ca: `${c.emoji}  What colour?`
+        es: 'What colour?',
+        ca: 'What colour?'
       },
+      visual: { glyph: c.emoji, label: c.word },
       options: options.map((w) => ({ es: w, ca: w })),
       correctIndex: options.indexOf(c.word),
       hint: {
