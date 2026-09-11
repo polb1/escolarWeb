@@ -92,5 +92,32 @@
     "correct": "¡Muy bien!",
     "retry": "¡Casi! Vamos a intentarlo otra vez",
     "close": "¡Estás muy cerca! Prueba de nuevo"
+  },
+  "progressPage": {
+    "title": "Mi progreso",
+    "subtitle": "Mira cuánto has aprendido",
+    "summary": "Resumen",
+    "xp": "Puntos",
+    "stars": "Estrellas",
+    "streak": "Racha",
+    "thisWeek": "Esta semana",
+    "bySubject": "Por asignatura",
+    "emptyPrompt": "Aún no has practicado. ¡Empieza cuando quieras!"
+  },
+  "achievementsPage": {
+    "title": "Mis logros",
+    "progress": "{{unlocked}} de {{total}} conseguidos",
+    "unlocked": "Conseguido",
+    "locked": "Aún no"
+  },
+  "achievements": {
+    "first_steps": { "name": "Primeros pasos", "desc": "Haz tu primer ejercicio" },
+    "ten_correct": { "name": "Diez aciertos", "desc": "Acierta 10 ejercicios" },
+    "math_starter": { "name": "Matemático", "desc": "Consigue una estrella en Matemáticas" },
+    "english_starter": { "name": "Explorador de inglés", "desc": "Consigue una estrella en Inglés" },
+    "three_stars": { "name": "Tres estrellas", "desc": "Consigue 3 estrellas en una sesión" },
+    "streak_3": { "name": "Racha de 3", "desc": "Juega 3 días seguidos" },
+    "streak_7": { "name": "Racha de 7", "desc": "Juega 7 días seguidos" },
+    "xp_100": { "name": "Cien puntos", "desc": "Consigue 100 puntos" }
   }
 }

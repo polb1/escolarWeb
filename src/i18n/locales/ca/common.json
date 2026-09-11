@@ -92,5 +92,32 @@
     "correct": "Molt bé!",
     "retry": "Gairebé! Anem a provar-ho una altra vegada",
     "close": "Ho tens molt a prop! Prova de nou"
+  },
+  "progressPage": {
+    "title": "El meu progrés",
+    "subtitle": "Mira quant has après",
+    "summary": "Resum",
+    "xp": "Punts",
+    "stars": "Estrelles",
+    "streak": "Ratxa",
+    "thisWeek": "Aquesta setmana",
+    "bySubject": "Per assignatura",
+    "emptyPrompt": "Encara no has practicat. Comença quan vulguis!"
+  },
+  "achievementsPage": {
+    "title": "Els meus assoliments",
+    "progress": "{{unlocked}} de {{total}} aconseguits",
+    "unlocked": "Aconseguit",
+    "locked": "Encara no"
+  },
+  "achievements": {
+    "first_steps": { "name": "Primeres passes", "desc": "Fes el teu primer exercici" },
+    "ten_correct": { "name": "Deu encerts", "desc": "Encerta 10 exercicis" },
+    "math_starter": { "name": "Matemàtic", "desc": "Aconsegueix una estrella a Matemàtiques" },
+    "english_starter": { "name": "Explorador d'anglès", "desc": "Aconsegueix una estrella a Anglès" },
+    "three_stars": { "name": "Tres estrelles", "desc": "Aconsegueix 3 estrelles en una sessió" },
+    "streak_3": { "name": "Ratxa de 3", "desc": "Juga 3 dies seguits" },
+    "streak_7": { "name": "Ratxa de 7", "desc": "Juga 7 dies seguits" },
+    "xp_100": { "name": "Cent punts", "desc": "Aconsegueix 100 punts" }
   }
 }

@@ -8,6 +8,7 @@ import { getRenderer } from '@/engine/registry';
 import type { AttemptResult, Difficulty, ExerciseSpec } from '@/engine/types';
 import { Mascot } from '@/ui/mascot/Mascot';
 import { useProgressStore, loadRecentAttempts } from '@/stores/progress';
+import { useStreakStore } from '@/stores/streak';
 import { useProfileStore } from '@/stores/profile';
 import { adjustDifficulty, computeXp } from '@/engine/difficulty';
 
@@ -22,6 +23,7 @@ export function ExercisePlayer() {
   const recordAttempt = useProgressStore((s) => s.recordAttempt);
   const recordSessionResult = useProgressStore((s) => s.recordSessionResult);
   const awardXp = useProgressStore((s) => s.awardXp);
+  const registerStreakActivity = useStreakStore((s) => s.registerActivity);
 
   const [items, setItems] = useState<ExerciseSpec[] | null>(null);
   const [index, setIndex] = useState(0);
@@ -150,6 +152,7 @@ export function ExercisePlayer() {
             : 0) as 0 | 1 | 2 | 3;
       // Guardado idempotente: sólo escribe si mejora el récord.
       void recordSessionResult({ sessionId, stars, correct: correctCount, total });
+      registerStreakActivity();
       return <SessionResult correct={correctCount} total={total} firstTry={firstTryCount} xp={xpEarned} />;
     }
     return (
