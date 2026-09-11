@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import type { RendererProps } from '../registry';
 import type { MathOperationSpec } from '../types';
+import { NumericKeypad } from './NumericKeypad';
 
 export function MathOperationRenderer({
   spec,
@@ -11,15 +12,22 @@ export function MathOperationRenderer({
   const [value, setValue] = useState('');
   const [locked, setLocked] = useState(false);
   const [wrongShake, setWrongShake] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [spec.id]);
+  function pushDigit(d: string) {
+    if (locked) return;
+    // Máx 4 dígitos: los ejercicios nunca llegan a 5 cifras en 2º.
+    if (value.length >= 4) return;
+    setValue((v) => (v === '' && d === '0' ? '0' : v + d));
+  }
+
+  function backspace() {
+    if (locked) return;
+    setValue((v) => v.slice(0, -1));
+  }
 
   function submit() {
-    if (locked) return;
-    const parsed = Number(value.replace(',', '.').trim());
+    if (locked || value === '') return;
+    const parsed = Number(value);
     if (!Number.isFinite(parsed)) return;
     const correct = parsed === spec.answer;
     if (correct) {
@@ -36,54 +44,36 @@ export function MathOperationRenderer({
       showExplanation: true
     });
     setValue('');
-    inputRef.current?.focus();
   }
 
-  const [top, bottom] = spec.columns ?? [spec.render, ''];
-
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center gap-6">
       {showHint && spec.hint && (
-        <div className="mb-6 max-w-xl rounded-2xl bg-yellow-50 border border-yellow-200 p-3 text-center">
+        <div className="max-w-xl rounded-2xl bg-yellow-50 border border-yellow-200 p-3 text-center">
           💡 {spec.hint[lang]}
         </div>
       )}
 
       <div
-        className="font-black text-6xl md:text-7xl leading-tight tabular-nums text-right px-6 py-4 rounded-2xl bg-surfaceElevated shadow-card"
+        className="font-black text-5xl md:text-6xl leading-tight tabular-nums text-center px-8 py-4 rounded-2xl bg-surfaceElevated shadow-card"
         style={{
           fontFamily: 'ui-monospace, "SF Mono", Menlo, monospace',
-          minWidth: 220,
-          transform: wrongShake ? 'translateX(0)' : undefined,
+          minWidth: 260,
           animation: wrongShake ? 'shake 0.4s' : undefined
         }}
-        aria-hidden="true"
+        aria-live="polite"
       >
-        <div>{top}</div>
-        {bottom && <div>{bottom}</div>}
-        <div style={{ borderTop: '4px solid currentColor', margin: '8px 0 4px' }} />
-        <input
-          ref={inputRef}
-          type="number"
-          inputMode="numeric"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && submit()}
-          disabled={locked}
-          aria-label={spec.render}
-          className="w-full text-right bg-transparent outline-none font-black tabular-nums"
-          style={{ fontFamily: 'inherit', fontSize: 'inherit' }}
-        />
+        <div className="text-inkSoft">{spec.render}</div>
+        <div style={{ borderTop: '4px solid currentColor', margin: '8px 0' }} />
+        <div style={{ minHeight: '1em' }}>{value || ' '}</div>
       </div>
 
-      <button
-        type="button"
-        onClick={submit}
-        disabled={locked || value.trim() === ''}
-        className="mt-6 rounded-2xl px-8 py-3 font-black text-white bg-brand disabled:opacity-40"
-      >
-        ✓
-      </button>
+      <NumericKeypad
+        onKey={pushDigit}
+        onBackspace={backspace}
+        onSubmit={submit}
+        disabled={locked}
+      />
 
       <style>{`@keyframes shake {
         0%, 100% { transform: translateX(0); }

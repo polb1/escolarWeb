@@ -1,5 +1,8 @@
 import { generateAddition } from '@/engine/generators/addition';
 import { generateSubtraction } from '@/engine/generators/subtraction';
+import { generateComparison } from '@/engine/generators/comparison';
+import { generateOrdering } from '@/engine/generators/ordering';
+import { generateMultiplication } from '@/engine/generators/multiplication';
 import { buildColoursSet } from '@/content/english/colours';
 import { buildAnimalsSet } from '@/content/english/animals';
 import { buildNumbersSet } from '@/content/english/numbers';
@@ -11,7 +14,6 @@ export interface SessionDescriptor {
   topicId: string;
   titleKey: string;
   size: number;
-  /** true → hay que elegir dificultad antes de empezar; false → contenido estático. */
   hasDifficultyLevels: boolean;
 }
 
@@ -27,6 +29,27 @@ export const SESSIONS: Record<string, SessionDescriptor> = {
     id: 'math.subtraction',
     topicId: 'math.subtraction',
     titleKey: 'sessions.math.subtraction',
+    size: 5,
+    hasDifficultyLevels: true
+  },
+  'math.comparison': {
+    id: 'math.comparison',
+    topicId: 'math.comparison',
+    titleKey: 'sessions.math.comparison',
+    size: 5,
+    hasDifficultyLevels: true
+  },
+  'math.ordering': {
+    id: 'math.ordering',
+    topicId: 'math.ordering',
+    titleKey: 'sessions.math.ordering',
+    size: 4,
+    hasDifficultyLevels: true
+  },
+  'math.multiplication': {
+    id: 'math.multiplication',
+    topicId: 'math.multiplication',
+    titleKey: 'sessions.math.multiplication',
     size: 5,
     hasDifficultyLevels: true
   },
@@ -57,19 +80,36 @@ export function buildSession(sessionId: string, difficulty: Difficulty): Exercis
   const s = SESSIONS[sessionId];
   if (!s) throw new Error(`Unknown session: ${sessionId}`);
 
-  if (s.topicId === 'math.addition' || s.topicId === 'math.subtraction') {
-    const runSeed = hashSeed(sessionId, Date.now());
-    const items: ExerciseSpec[] = [];
-    const gen = s.topicId === 'math.addition' ? generateAddition : generateSubtraction;
-    for (let i = 0; i < s.size; i++) {
-      items.push(gen({ difficulty, seed: hashSeed(runSeed, i) }));
-    }
-    return items;
+  const runSeed = hashSeed(sessionId, Date.now());
+
+  switch (s.topicId) {
+    case 'math.addition':
+      return times(s.size, (i) => generateAddition({ difficulty, seed: hashSeed(runSeed, i) }));
+    case 'math.subtraction':
+      return times(s.size, (i) => generateSubtraction({ difficulty, seed: hashSeed(runSeed, i) }));
+    case 'math.comparison':
+      return times(s.size, (i) => generateComparison({ difficulty, seed: hashSeed(runSeed, i) }));
+    case 'math.ordering':
+      return times(s.size, (i) =>
+        generateOrdering({
+          difficulty,
+          seed: hashSeed(runSeed, i),
+          direction: i % 2 === 0 ? 'asc' : 'desc'
+        })
+      );
+    case 'math.multiplication':
+      return times(s.size, (i) => generateMultiplication({ difficulty, seed: hashSeed(runSeed, i) }));
+    case 'english.colours':
+      return buildColoursSet();
+    case 'english.animals':
+      return buildAnimalsSet();
+    case 'english.numbers':
+      return buildNumbersSet();
   }
 
-  if (s.topicId === 'english.colours') return buildColoursSet();
-  if (s.topicId === 'english.animals') return buildAnimalsSet();
-  if (s.topicId === 'english.numbers') return buildNumbersSet();
-
   throw new Error(`No content builder for topic: ${s.topicId}`);
+}
+
+function times<T>(n: number, fn: (i: number) => T): T[] {
+  return Array.from({ length: n }, (_, i) => fn(i));
 }

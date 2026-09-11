@@ -3,6 +3,8 @@ import type { ExerciseSpec, ExerciseType, AttemptResult } from './types';
 import { MultipleChoiceRenderer } from './renderers/MultipleChoice';
 import { MathOperationRenderer } from './renderers/MathOperation';
 import { MatchingRenderer } from './renderers/Matching';
+import { ImageSelectionRenderer } from './renderers/ImageSelection';
+import { OrderingRenderer } from './renderers/Ordering';
 
 /** Un renderer recibe la spec y un callback para reportar cada intento. */
 export interface RendererProps<S extends ExerciseSpec = ExerciseSpec> {
@@ -19,7 +21,9 @@ type AnyRenderer = ComponentType<RendererProps<never>>;
 const REGISTRY: Record<ExerciseType, AnyRenderer> = {
   multiple_choice: MultipleChoiceRenderer as unknown as AnyRenderer,
   math_operation: MathOperationRenderer as unknown as AnyRenderer,
-  matching: MatchingRenderer as unknown as AnyRenderer
+  matching: MatchingRenderer as unknown as AnyRenderer,
+  image_selection: ImageSelectionRenderer as unknown as AnyRenderer,
+  ordering: OrderingRenderer as unknown as AnyRenderer
 };
 
 export function getRenderer(type: ExerciseType): AnyRenderer {

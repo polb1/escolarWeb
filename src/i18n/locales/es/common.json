@@ -63,7 +63,10 @@
     "exercises_other": "{{count}} ejercicios",
     "math": {
       "addition": "Sumas",
-      "subtraction": "Restas"
+      "subtraction": "Restas",
+      "multiplication": "Multiplicaciones",
+      "comparison": "Comparar",
+      "ordering": "Ordenar"
     },
     "english": {
       "colours": "Colores",

@@ -5,7 +5,9 @@ export type Difficulty = 1 | 2 | 3 | 4 | 5;
 export type ExerciseType =
   | 'multiple_choice'
   | 'math_operation'
-  | 'matching';
+  | 'matching'
+  | 'image_selection'
+  | 'ordering';
 
 export interface Localized {
   es: string;
@@ -49,7 +51,27 @@ export interface MatchingSpec extends ExerciseBase {
   pairs: { left: Localized; right: Localized }[];
 }
 
-export type ExerciseSpec = MultipleChoiceSpec | MathOperationSpec | MatchingSpec;
+export interface ImageSelectionSpec extends ExerciseBase {
+  type: 'image_selection';
+  question: Localized;
+  /** Cada opción es un emoji grande. Formato: {glyph, label, isCorrect}. */
+  options: { glyph: string; label: Localized; isCorrect: boolean }[];
+}
+
+export interface OrderingSpec extends ExerciseBase {
+  type: 'ordering';
+  prompt: Localized;
+  /** Elementos a ordenar. Se presentan barajados; el orden correcto es el del array. */
+  items: { key: string; label: string; sortValue: number }[];
+  direction: 'asc' | 'desc';
+}
+
+export type ExerciseSpec =
+  | MultipleChoiceSpec
+  | MathOperationSpec
+  | MatchingSpec
+  | ImageSelectionSpec
+  | OrderingSpec;
 
 /** Resultado de UN intento del jugador dentro de un ejercicio. */
 export interface AttemptResult {

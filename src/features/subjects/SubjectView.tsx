@@ -12,7 +12,10 @@ interface TopicChoice {
 const TOPICS_BY_SUBJECT: Partial<Record<SubjectId, TopicChoice[]>> = {
   math: [
     { sessionId: 'math.addition', titleKey: 'sessions.math.addition', icon: '➕' },
-    { sessionId: 'math.subtraction', titleKey: 'sessions.math.subtraction', icon: '➖' }
+    { sessionId: 'math.subtraction', titleKey: 'sessions.math.subtraction', icon: '➖' },
+    { sessionId: 'math.multiplication', titleKey: 'sessions.math.multiplication', icon: '✖️' },
+    { sessionId: 'math.comparison', titleKey: 'sessions.math.comparison', icon: '⚖️' },
+    { sessionId: 'math.ordering', titleKey: 'sessions.math.ordering', icon: '🔢' }
   ],
   english: [
     { sessionId: 'english.colours', titleKey: 'sessions.english.colours', icon: '🎨' },
