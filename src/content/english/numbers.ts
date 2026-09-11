@@ -32,8 +32,8 @@ export function buildNumbersSet(): MultipleChoiceSpec[] {
       topicId: 'english.numbers',
       difficulty: 1,
       question: {
-        es: 'How do you say this in English?',
-        ca: 'How do you say this in English?'
+        es: '¿Qué número es?',
+        ca: 'Quin nombre és?'
       },
       visual: { glyph: n.digit, label: n.word },
       options: options.map((w) => ({ es: w, ca: w })),

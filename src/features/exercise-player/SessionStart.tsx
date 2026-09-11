@@ -34,7 +34,10 @@ function CurriculumFootnote({ sessionId }: { sessionId: string }) {
   }, {});
 
   return (
-    <details className="mt-6 rounded-2xl bg-black/5 p-3 text-sm text-inkSoft">
+    // `key` fuerza un remount por sesión: al cambiar de sesión (o volver aquí
+    // tras jugar) el <details> nace cerrado en vez de recordar el estado
+    // que tuviera antes en el mismo nodo.
+    <details key={sessionId} className="mt-6 rounded-2xl bg-black/5 p-3 text-sm text-inkSoft">
       <summary className="cursor-pointer font-bold">📘 Currículo oficial</summary>
       <div className="mt-3 space-y-4">
         {Object.entries(grouped).map(([source, srcTags]) => (
